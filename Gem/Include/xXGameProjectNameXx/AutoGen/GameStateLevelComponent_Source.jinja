@@ -1,0 +1,98 @@
+
+#include <{{ "Source/AutoGen/{0}.h".format(((outputFile|basename)|splitext)[0]) }}>
+
+#include <AzCore/Serialization/SerializeContext.h>
+#include <AzCore/Serialization/EditContext.h>
+#include <AzCore/RTTI/BehaviorContext.h>
+#include <GameState/GameStateRequestBus.h>
+
+{% for dataFile in dataFiles %}
+
+{% set ComponentName = dataFile.attrib['Name'] %}
+{% set ComponentNamespace = dataFile.attrib['Namespace'] %}
+{% set GameStateType = dataFile.attrib['GameStateType'] %}
+{% set GameStateInclude = dataFile.attrib['GameStateInclude'] %}
+
+#include <{{ GameStateInclude }}>
+
+namespace {{ ComponentNamespace }}
+{
+    AZ_COMPONENT_IMPL({{ ComponentNamespace }}::{{ ComponentName }}, "{{ ComponentNamespace }}::{{ ComponentName }}", "{{ "ComponentNamespace::ComponentName" | createHashGuid }}");
+
+    void {{ ComponentName }}::Reflect(AZ::ReflectContext* context)
+    {
+        if (AZ::SerializeContext* serializeContext = azrtti_cast<AZ::SerializeContext*>(context))
+        {
+            serializeContext->Class<{{ ComponentName }}, AZ::Component>()
+                ->Version(1)
+                ;
+
+            if (AZ::EditContext* editContext = serializeContext->GetEditContext())
+            {
+                editContext->Class<{{ ComponentName }}>("{{ ComponentName }}", "[Description of functionality provided by this component]")
+                    ->ClassElement(AZ::Edit::ClassElements::EditorData, "")
+                    ->Attribute(AZ::Edit::Attributes::Category, "ComponentCategory")
+                    ->Attribute(AZ::Edit::Attributes::Icon, "Icons/Components/Component_Placeholder.svg")
+                    ->Attribute(AZ::Edit::Attributes::AppearsInAddComponentMenu, AZ_CRC_CE("Level"))
+                    ;
+            }
+        }
+
+        if (AZ::BehaviorContext* behaviorContext = azrtti_cast<AZ::BehaviorContext*>(context))
+        {
+            behaviorContext->Class<{{ ComponentName }}>("{{ ComponentName }}")
+                ->Attribute(AZ::Script::Attributes::Category, "{{ ComponentNamespace }}")
+                ;
+        }
+    }
+
+    void {{ ComponentName }}::GetProvidedServices(AZ::ComponentDescriptor::DependencyArrayType& provided)
+    {
+        provided.push_back(AZ_CRC_CE("{{ ComponentName }}Service"));
+    }
+
+    void {{ ComponentName }}::GetIncompatibleServices(AZ::ComponentDescriptor::DependencyArrayType& incompatible)
+    {
+        incompatible.push_back(AZ_CRC_CE("{{ ComponentName }}Service"));
+    }
+
+    void {{ ComponentName }}::GetRequiredServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& required)
+    {
+    }
+
+    void {{ ComponentName }}::GetDependentServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& dependent)
+    {
+    }
+
+    void {{ ComponentName }}::Activate()
+    {
+        // @Christian: [editor] Usages of the GameState gem are disabled in editor because the GameState gem does not provide an editor version of their target. So
+        // their system component does not activate or anything.
+#ifndef EDITOR
+        GameState::GameStateRequests::CreateAndPushNewOverridableGameStateOfType<{{ GameStateType }}>();
+#endif // #ifndef EDITOR
+    }
+
+    void {{ ComponentName }}::Deactivate()
+    {
+        // @Christian: [editor] Usages of the GameState gem are disabled in editor because the GameState gem does not provide an editor version of their target. So
+        // their system component does not activate or anything.
+#ifndef EDITOR
+        // First, pop any game states on top of the `{{ GameStateType }}` state.
+        GameState::GameStateRequests::PopActiveGameStateUntilOfType<{{ GameStateType }}>();
+
+        // Now, pop the `{{ GameStateType }}` state itself.
+        GameState::GameStateRequestBus::Broadcast(&GameState::GameStateRequests::PopActiveGameState);
+
+        // @Christian: [ui][bug[engine]] Note: When the game is shutdown, we get the assertion message: "The following font is being freed but still in use by a FontFamily". This is
+        // okay. It's not caused by anything we're doing wrong. I debugged it, and all of the shared pointers to the loaded `FontFamily` get destructed and its ref count
+        // decrements to zero, but it seems to be an engine but that `AZ::AtomFont::ReleaseFontFamily` is not getting called (which the code says it should be getting
+        // called automatically when the "final FontFamily shared_ptr is destroyed"), so dangling pointers remain in their `AZ::AtomFont::m_fontFamilyReverseLookup` data
+        // member. Dangling pointers sound bad, but it doesn't seem to be affecting our end product, the game is being shutdown anyway in this example and the `AZ::AtomFont` object
+        // itself is in the process of destructing, so those dangling pointers are going to go away anyways right after. I guess the concern would be about possible crashes before
+        // this point though. I guess there is a brief moment (maybe a few ticks Idk) where these dangling pointers are just hanging out.
+#endif // #ifndef EDITOR
+    }
+} // namespace {{ ComponentNamespace }}
+
+{% endfor %}

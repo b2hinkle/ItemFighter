@@ -1,0 +1,318 @@
+{
+    "ContainerEntity": {
+        "Id": "ContainerEntity",
+        "Name": "Empty",
+        "Components": {
+            "EditorDisabledCompositionComponent": {
+                "$type": "EditorDisabledCompositionComponent",
+                "Id": 16616931740997949210
+            },
+            "EditorEntityIconComponent": {
+                "$type": "EditorEntityIconComponent",
+                "Id": 2778716686621881360
+            },
+            "EditorEntitySortComponent": {
+                "$type": "EditorEntitySortComponent",
+                "Id": 1069995033707506449,
+                "Child Entity Order": [
+                    "Entity_[295204691580]",
+                    "Entity_[574377565820]",
+                    "Entity_[949383976148]",
+                    "Entity_[890179504051]"
+                ]
+            },
+            "EditorInspectorComponent": {
+                "$type": "EditorInspectorComponent",
+                "Id": 4185413252280323606
+            },
+            "EditorLockComponent": {
+                "$type": "EditorLockComponent",
+                "Id": 4068240492793213930
+            },
+            "EditorOnlyEntityComponent": {
+                "$type": "EditorOnlyEntityComponent",
+                "Id": 1499221618774487829
+            },
+            "EditorPendingCompositionComponent": {
+                "$type": "EditorPendingCompositionComponent",
+                "Id": 10852705643903064770
+            },
+            "EditorPrefabComponent": {
+                "$type": "EditorPrefabComponent",
+                "Id": 12239744644494076517
+            },
+            "EditorVisibilityComponent": {
+                "$type": "EditorVisibilityComponent",
+                "Id": 17437522806552955660
+            },
+            "LocalViewBookmarkComponent": {
+                "$type": "LocalViewBookmarkComponent",
+                "Id": 7706779388774148851,
+                "LocalBookmarkFileName": "GameplayDevelopmentLevel_17540291519627688.setreg"
+            },
+            "RootAutonomousEntitySpawnerComponent": {
+                "$type": "GenericComponentWrapper",
+                "Id": 9865409291786708939,
+                "m_template": {
+                    "$type": "RootAutonomousEntitySpawnerComponent",
+                    "RootAutonomousEntitySpawnable": {
+                        "Spawnable": {
+                            "assetId": {
+                                "guid": "{689CE607-3571-5CA8-9F28-DF2C731086BD}",
+                                "subId": 3524801777
+                            },
+                            "assetHint": "prefabs/rootautonomousentity.network.spawnable"
+                        }
+                    },
+                    "SpawnTransformEntityReference": "Entity_[949383976148]"
+                }
+            },
+            "TransformComponent": {
+                "$type": "{27F1E1A1-8D9D-4C3B-BD3A-AFB9762449C0} TransformComponent",
+                "Id": 4584354821622104079,
+                "Parent Entity": ""
+            }
+        }
+    },
+    "Entities": {
+        "Entity_[295204691580]": {
+            "Id": "Entity_[295204691580]",
+            "Name": "Ground",
+            "Components": {
+                "AZ::Render::EditorMeshComponent": {
+                    "$type": "AZ::Render::EditorMeshComponent",
+                    "Id": 17303471961365771787,
+                    "Controller": {
+                        "Configuration": {
+                            "ModelAsset": {
+                                "assetId": {
+                                    "guid": "{0CD745C0-6AA8-569A-A68A-73A3270986C4}",
+                                    "subId": 277889906
+                                },
+                                "assetHint": "objects/groudplane/groundplane_512x512m.fbx.azmodel"
+                            }
+                        }
+                    }
+                },
+                "EditorDisabledCompositionComponent": {
+                    "$type": "EditorDisabledCompositionComponent",
+                    "Id": 17946014751742655004
+                },
+                "EditorEntityIconComponent": {
+                    "$type": "EditorEntityIconComponent",
+                    "Id": 6826763310034893449
+                },
+                "EditorEntitySortComponent": {
+                    "$type": "EditorEntitySortComponent",
+                    "Id": 5746975309891183807
+                },
+                "EditorInspectorComponent": {
+                    "$type": "EditorInspectorComponent",
+                    "Id": 7890201100694867503
+                },
+                "EditorLockComponent": {
+                    "$type": "EditorLockComponent",
+                    "Id": 15936678975713157729
+                },
+                "EditorMaterialComponent": {
+                    "$type": "EditorMaterialComponent",
+                    "Id": 290555475501185861
+                },
+                "EditorOnlyEntityComponent": {
+                    "$type": "EditorOnlyEntityComponent",
+                    "Id": 14059537092263023703
+                },
+                "EditorPendingCompositionComponent": {
+                    "$type": "EditorPendingCompositionComponent",
+                    "Id": 10780617175402134716
+                },
+                "EditorVisibilityComponent": {
+                    "$type": "EditorVisibilityComponent",
+                    "Id": 2684488783269356469
+                },
+                "TransformComponent": {
+                    "$type": "{27F1E1A1-8D9D-4C3B-BD3A-AFB9762449C0} TransformComponent",
+                    "Id": 11628040244762590834,
+                    "Parent Entity": "ContainerEntity"
+                }
+            }
+        },
+        "Entity_[574377565820]": {
+            "Id": "Entity_[574377565820]",
+            "Name": "DirectionalLight",
+            "Components": {
+                "AZ::Render::EditorDirectionalLightComponent": {
+                    "$type": "AZ::Render::EditorDirectionalLightComponent",
+                    "Id": 8214984479124643162,
+                    "Controller": {
+                        "Configuration": {
+                            "CameraEntityId": ""
+                        }
+                    }
+                },
+                "EditorDisabledCompositionComponent": {
+                    "$type": "EditorDisabledCompositionComponent",
+                    "Id": 937400863648838475
+                },
+                "EditorEntityIconComponent": {
+                    "$type": "EditorEntityIconComponent",
+                    "Id": 17851901380898658911
+                },
+                "EditorEntitySortComponent": {
+                    "$type": "EditorEntitySortComponent",
+                    "Id": 6834321426192586697
+                },
+                "EditorInspectorComponent": {
+                    "$type": "EditorInspectorComponent",
+                    "Id": 5808641626493347186
+                },
+                "EditorLockComponent": {
+                    "$type": "EditorLockComponent",
+                    "Id": 209137494116055086
+                },
+                "EditorOnlyEntityComponent": {
+                    "$type": "EditorOnlyEntityComponent",
+                    "Id": 3880966224637320712
+                },
+                "EditorPendingCompositionComponent": {
+                    "$type": "EditorPendingCompositionComponent",
+                    "Id": 9553879824715227803
+                },
+                "EditorVisibilityComponent": {
+                    "$type": "EditorVisibilityComponent",
+                    "Id": 8266484708303626451
+                },
+                "TransformComponent": {
+                    "$type": "{27F1E1A1-8D9D-4C3B-BD3A-AFB9762449C0} TransformComponent",
+                    "Id": 1735803096402897969,
+                    "Parent Entity": "ContainerEntity",
+                    "Transform Data": {
+                        "Rotate": [
+                            -76.0,
+                            0.0,
+                            -15.0
+                        ]
+                    }
+                }
+            }
+        },
+        "Entity_[890179504051]": {
+            "Id": "Entity_[890179504051]",
+            "Name": "Camera",
+            "Components": {
+                "EditorCameraComponent": {
+                    "$type": "{CA11DA46-29FF-4083-B5F6-E02C3A8C3A3D} EditorCameraComponent",
+                    "Id": 13897847229455707032
+                },
+                "EditorDisabledCompositionComponent": {
+                    "$type": "EditorDisabledCompositionComponent",
+                    "Id": 18004581868069833518
+                },
+                "EditorEntityIconComponent": {
+                    "$type": "EditorEntityIconComponent",
+                    "Id": 16474209304061927225
+                },
+                "EditorEntitySortComponent": {
+                    "$type": "EditorEntitySortComponent",
+                    "Id": 6458813062858904855
+                },
+                "EditorInspectorComponent": {
+                    "$type": "EditorInspectorComponent",
+                    "Id": 12634594804453826816
+                },
+                "EditorLockComponent": {
+                    "$type": "EditorLockComponent",
+                    "Id": 9120279606670613660
+                },
+                "EditorOnlyEntityComponent": {
+                    "$type": "EditorOnlyEntityComponent",
+                    "Id": 12271829677827535402
+                },
+                "EditorPendingCompositionComponent": {
+                    "$type": "EditorPendingCompositionComponent",
+                    "Id": 11554478562750367140
+                },
+                "EditorVisibilityComponent": {
+                    "$type": "EditorVisibilityComponent",
+                    "Id": 2098078157527602409
+                },
+                "Multiplayer::NetworkTransformComponent": {
+                    "$type": "GenericComponentWrapper",
+                    "Id": 12612413277812618938,
+                    "m_template": {
+                        "$type": "Multiplayer::NetworkTransformComponent"
+                    }
+                },
+                "NetBindComponent": {
+                    "$type": "GenericComponentWrapper",
+                    "Id": 9854472597397793456,
+                    "m_template": {
+                        "$type": "NetBindComponent"
+                    }
+                },
+                "TransformComponent": {
+                    "$type": "{27F1E1A1-8D9D-4C3B-BD3A-AFB9762449C0} TransformComponent",
+                    "Id": 5804035609509095612,
+                    "Parent Entity": "ContainerEntity",
+                    "Transform Data": {
+                        "Translate": [
+                            0.0,
+                            -20.0,
+                            5.0
+                        ]
+                    }
+                }
+            }
+        },
+        "Entity_[949383976148]": {
+            "Id": "Entity_[949383976148]",
+            "Name": "SpawnPointTransform",
+            "Components": {
+                "EditorDisabledCompositionComponent": {
+                    "$type": "EditorDisabledCompositionComponent",
+                    "Id": 13365980034643767569
+                },
+                "EditorEntityIconComponent": {
+                    "$type": "EditorEntityIconComponent",
+                    "Id": 14705508302989346114
+                },
+                "EditorEntitySortComponent": {
+                    "$type": "EditorEntitySortComponent",
+                    "Id": 819139081090103680
+                },
+                "EditorInspectorComponent": {
+                    "$type": "EditorInspectorComponent",
+                    "Id": 15361337755059717955
+                },
+                "EditorLockComponent": {
+                    "$type": "EditorLockComponent",
+                    "Id": 17749215297849709890
+                },
+                "EditorOnlyEntityComponent": {
+                    "$type": "EditorOnlyEntityComponent",
+                    "Id": 15692879771841681894
+                },
+                "EditorPendingCompositionComponent": {
+                    "$type": "EditorPendingCompositionComponent",
+                    "Id": 17864479085611409787
+                },
+                "EditorVisibilityComponent": {
+                    "$type": "EditorVisibilityComponent",
+                    "Id": 3070220832420587405
+                },
+                "TransformComponent": {
+                    "$type": "{27F1E1A1-8D9D-4C3B-BD3A-AFB9762449C0} TransformComponent",
+                    "Id": 2800464491010304387,
+                    "Parent Entity": "ContainerEntity",
+                    "Transform Data": {
+                        "Translate": [
+                            0.0,
+                            -8.0,
+                            0.0
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}
