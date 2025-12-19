@@ -46,6 +46,8 @@ set(MY_COMMON_STATIC_BUILD_DEPENDENCIES
         Gem::Atom_AtomBridge.Static
         Legacy::CryCommon
         CppUtils::Concepts::Include
+        CppUtils::Core::Static
+        CppUtils::Misc::Static
 )
 
 set(MY_COMMON_STATIC_AUTOGEN_RULES
