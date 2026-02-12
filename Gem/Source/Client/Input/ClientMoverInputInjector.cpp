@@ -11,6 +11,7 @@
 #include <AzCore/Console/ILogger.h>
 #include <AzCore/Debug/Trace.h>
 #include <O3deUtils_Misc/MultiplayerUtils.h>
+#include <AzCore/std/algorithm.h>
 
 namespace
 {
@@ -35,9 +36,9 @@ namespace xXGameProjectNameXx
 
     void ClientMoverInputInjector::GetRequiredServices(AZ::ComponentDescriptor::DependencyArrayType& required)
     {
-        constexpr AZ::Crc32 netBindService = AZ_CRC_CE("NetBindService");
+        constexpr AZ::ComponentServiceType netBindService = AZ_CRC_CE("NetBindService");
         // Require the `MoverNetworkInputComponent`, as that is the component we will inject values into.
-        constexpr AZ::Crc32 moverNetworkInputComponentService = AZ_CRC_CE("MoverNetworkInputComponent");
+        constexpr AZ::ComponentServiceType moverNetworkInputComponentService = AZ_CRC_CE("MoverNetworkInputComponent");
 
         // Add them, if not already.
 
@@ -54,7 +55,7 @@ namespace xXGameProjectNameXx
 
     void ClientMoverInputInjector::GetDependentServices(AZ::ComponentDescriptor::DependencyArrayType& dependent)
     {
-        constexpr AZ::Crc32 netBindService = AZ_CRC_CE("NetBindService");
+        constexpr AZ::ComponentServiceType netBindService = AZ_CRC_CE("NetBindService");
 
         // Add them, if not already.
 

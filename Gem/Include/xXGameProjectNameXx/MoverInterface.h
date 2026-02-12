@@ -32,14 +32,14 @@ namespace xXGameProjectNameXx
 
         AZ_FORCE_INLINE float GetMoveForwardAxis(const AZ::EntityId& entityId)
         {
-            float result = {};
+            float result{};
             MoverRequestBus::EventResult(result, entityId, &MoverRequestBus::Events::GetMoveForwardAxis);
             return result;
         }
 
         AZ_FORCE_INLINE float GetMoveRightAxis(const AZ::EntityId& entityId)
         {
-            float result = {};
+            float result{};
             MoverRequestBus::EventResult(result, entityId, &MoverRequestBus::Events::GetMoveRightAxis);
             return result;
         }

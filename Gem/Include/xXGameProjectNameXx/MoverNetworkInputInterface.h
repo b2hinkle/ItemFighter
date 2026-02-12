@@ -25,14 +25,14 @@ namespace xXGameProjectNameXx
     {
         AZ_FORCE_INLINE float GetMoveForwardAxis(const AZ::EntityId& entityId)
         {
-            float result = {};
+            float result{};
             MoverNetworkInputRequestBus::EventResult(result, entityId, &MoverNetworkInputRequestBus::Events::GetMoveForwardAxis);
             return result;
         }
 
         AZ_FORCE_INLINE float GetMoveRightAxis(const AZ::EntityId& entityId)
         {
-            float result = {};
+            float result{};
             MoverNetworkInputRequestBus::EventResult(result, entityId, &MoverNetworkInputRequestBus::Events::GetMoveRightAxis);
             return result;
         }

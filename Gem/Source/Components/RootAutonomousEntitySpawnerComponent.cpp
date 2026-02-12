@@ -174,7 +174,7 @@ namespace xXGameProjectNameXx
 
     AZ::Transform RootAutonomousEntitySpawnerComponent::GetSpawnTransformFromEntityReference() const
     {
-        AZ::Transform result = {};
+        AZ::Transform result{};
         AZ::TransformBus::EventResult(result, m_spawnTransformEntityReference, &AZ::TransformBus::Events::GetWorldTM);
         return result;
     }

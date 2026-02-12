@@ -27,4 +27,5 @@ list(APPEND FILES
     Source/AutoGen/MoverClientInputInjectorComponent.AutoComponent.xml
     Source/AutoGen/PlayerEntityManagerComponent.AutoComponent.xml
     Source/AutoGen/StageSelectGameStateLevelComponent.GameStateLevelComponent.xml
+    Source/AutoGen/EntityControlComponent.AutoComponent.xml
 )

@@ -22,4 +22,6 @@ list(APPEND FILES
     Source/Components/PlayerEntityManagerComponent.cpp
     Source/PlayerSystemComponent.cpp
     Source/PlayerSystemComponent.h
+    Source/Components/EntityControlComponent.h
+    Source/Components/EntityControlComponent.cpp
 )

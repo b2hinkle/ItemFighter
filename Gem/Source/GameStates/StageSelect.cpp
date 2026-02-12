@@ -38,7 +38,7 @@ namespace xXGameProjectNameXx::GameStates
                 logString += entityIdString;
             }
 
-            logString += "'.";
+            logString += ".";
             logString += ' ';
             logString += "Action name: '";
             logString += actionName;
