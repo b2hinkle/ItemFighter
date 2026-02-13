@@ -6,7 +6,7 @@
 #include <AzCore/RTTI/BehaviorContext.h>
 #include <Multiplayer/NetworkEntity/INetworkEntityManager.h>
 #include <Multiplayer/IMultiplayer.h>
-#include <O3deUtils_Misc/MultiplayerUtils.h>
+#include <O3deUtils/Misc/MultiplayerUtils.h>
 #include <AzCore/Console/ILogger.h>
 #include <Multiplayer/NetworkEntity/NetworkEntityHandle.h>
 #include <AzCore/Component/TransformBus.h>
@@ -136,7 +136,7 @@ namespace xXGameProjectNameXx
 #if AZ_TRAIT_SERVER
     bool EntitySpawnerComponent_OneOffAtTransforms::HasAuthority() const
     {
-        return O3deUtils::Misc::MultiplayerUtils::IsHosting();
+        return O3deUtils::IsHosting();
     }
 
     void EntitySpawnerComponent_OneOffAtTransforms::DoSpawns() const
@@ -161,7 +161,7 @@ namespace xXGameProjectNameXx
             AZ::Transform spawnTransform{};
             AZ::TransformBus::EventResult(spawnTransform, spawnableAtTransform.m_spawnTransformEntityReference, &AZ::TransformBus::Events::GetWorldTM);
 
-            Multiplayer::PrefabEntityId prefabEntityId = O3deUtils::Misc::MultiplayerUtils::MakeSinglePrefabEntityIdFromSpawnableAsset(spawnableAtTransform.m_spawnable.m_spawnableAsset);
+            Multiplayer::PrefabEntityId prefabEntityId = O3deUtils::MakeSinglePrefabEntityIdFromSpawnableAsset(spawnableAtTransform.m_spawnable.m_spawnableAsset);
 
             {
                 AZStd::fixed_string<256> logString;
@@ -178,7 +178,7 @@ namespace xXGameProjectNameXx
             }
 
             Multiplayer::INetworkEntityManager::EntityList createdEntities =
-                O3deUtils::Misc::MultiplayerUtils::GetNetworkEntityManagerAsserted().CreateEntitiesImmediate(
+                O3deUtils::GetNetworkEntityManagerAsserted().CreateEntitiesImmediate(
                     AZStd::move(prefabEntityId),
                     netEntityRole,
                     spawnTransform);

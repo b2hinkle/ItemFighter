@@ -6,7 +6,7 @@
 #include <AzCore/RTTI/BehaviorContext.h>
 #include <Multiplayer/NetworkEntity/INetworkEntityManager.h>
 #include <Multiplayer/IMultiplayer.h>
-#include <O3deUtils_Misc/MultiplayerUtils.h>
+#include <O3deUtils/Misc/MultiplayerUtils.h>
 #include <AzCore/Console/ILogger.h>
 #include <AzCore/Debug/Trace.h>
 #include <Multiplayer/NetworkEntity/NetworkEntityHandle.h>
@@ -92,7 +92,7 @@ namespace xXGameProjectNameXx
             AZLOG_INFO(logString.data());
         }
 
-        const Multiplayer::NetEntityId netEntityId = O3deUtils::Misc::MultiplayerUtils::GetNetworkEntityManagerAsserted().GetNetEntityIdById(entityId);
+        const Multiplayer::NetEntityId netEntityId = O3deUtils::GetNetworkEntityManagerAsserted().GetNetEntityIdById(entityId);
         if (netEntityId == Multiplayer::InvalidNetEntityId)
         {
             // @Christian: TODO: [todo][techdebt][multiplayer] Implement support for being able to contorl non-networked entities.
@@ -133,7 +133,7 @@ namespace xXGameProjectNameXx
         }
 #else
         {
-            if (!O3deUtils::Misc::MultiplayerUtils::GetNetBindComponentAsserted(*this).IsNetEntityRoleAuthority())
+            if (!O3deUtils::GetNetBindComponentAsserted(*this).IsNetEntityRoleAuthority())
             {
                 AZLOG_ERROR(noAuthorityLogString.data());
                 return false;
@@ -144,7 +144,7 @@ namespace xXGameProjectNameXx
                 return false;
             }
 
-            const AZ::Entity* entity = O3deUtils::Misc::MultiplayerUtils::GetNetworkEntityManagerAsserted().GetEntity(netEntityId).GetEntity();
+            const AZ::Entity* entity = O3deUtils::GetNetworkEntityManagerAsserted().GetEntity(netEntityId).GetEntity();
             AZ_Assert(entity, "Shouldn't be null.");
 
             const AZ::EntityId entityId = entity->GetId();
@@ -177,7 +177,7 @@ namespace xXGameProjectNameXx
             AZLOG_INFO(logString.data());
         }
 
-        const Multiplayer::NetEntityId netEntityId = O3deUtils::Misc::MultiplayerUtils::GetNetworkEntityManagerAsserted().GetNetEntityIdById(entityId);
+        const Multiplayer::NetEntityId netEntityId = O3deUtils::GetNetworkEntityManagerAsserted().GetNetEntityIdById(entityId);
         if (netEntityId == Multiplayer::InvalidNetEntityId)
         {
             // @Christian: TODO: [todo][techdebt][multiplayer] Implement support for being able to contorl non-networked entities.
@@ -218,7 +218,7 @@ namespace xXGameProjectNameXx
         }
 #else
         {
-            if (!O3deUtils::Misc::MultiplayerUtils::GetNetBindComponentAsserted(*this).IsNetEntityRoleAuthority())
+            if (!O3deUtils::GetNetBindComponentAsserted(*this).IsNetEntityRoleAuthority())
             {
                 AZLOG_ERROR(noAuthorityLogString.data());
                 return false;
@@ -229,7 +229,7 @@ namespace xXGameProjectNameXx
                 return false;
             }
 
-            const AZ::Entity* entity = O3deUtils::Misc::MultiplayerUtils::GetNetworkEntityManagerAsserted().GetEntity(netEntityId).GetEntity();
+            const AZ::Entity* entity = O3deUtils::GetNetworkEntityManagerAsserted().GetEntity(netEntityId).GetEntity();
             AZ_Assert(entity, "Shouldn't be null.");
 
             const AZ::EntityId entityId = entity->GetId();
@@ -243,7 +243,7 @@ namespace xXGameProjectNameXx
 #if AZ_TRAIT_SERVER
     bool EntityControlComponent::TryAddToControlledNetEntityIds(const Multiplayer::NetEntityId& netEntityId)
     {
-        AZ_Assert(O3deUtils::Misc::MultiplayerUtils::GetNetBindComponentAsserted(*this).IsNetEntityRoleAuthority(), "This logic is authority only.");
+        AZ_Assert(O3deUtils::GetNetBindComponentAsserted(*this).IsNetEntityRoleAuthority(), "This logic is authority only.");
 
         EntityControlComponentController* multiplayerController = GetEntityControlComponentController();
         AZ_Assert(multiplayerController, "Shouldn't be null.");
@@ -274,7 +274,7 @@ namespace xXGameProjectNameXx
 
     bool EntityControlComponent::TryRemoveFromControlledNetEntityIds(const Multiplayer::NetEntityId& netEntityId)
     {
-        AZ_Assert(O3deUtils::Misc::MultiplayerUtils::GetNetBindComponentAsserted(*this).IsNetEntityRoleAuthority(), "This logic is authority only.");
+        AZ_Assert(O3deUtils::GetNetBindComponentAsserted(*this).IsNetEntityRoleAuthority(), "This logic is authority only.");
 
         EntityControlComponentController* multiplayerController = GetEntityControlComponentController();
         AZ_Assert(multiplayerController, "Shouldn't be null.");
@@ -287,7 +287,7 @@ namespace xXGameProjectNameXx
 
     void EntityControlComponent::HandleAddedControlledEntity(const AZ::EntityId& entityId)
     {
-        AZ_Assert(O3deUtils::Misc::MultiplayerUtils::GetNetBindComponentAsserted(*this).IsNetEntityRoleAuthority(), "This logic is authority only.");
+        AZ_Assert(O3deUtils::GetNetBindComponentAsserted(*this).IsNetEntityRoleAuthority(), "This logic is authority only.");
 
         const AZ::EntityId& owningEntityId = GetEntityId();
 
@@ -297,7 +297,7 @@ namespace xXGameProjectNameXx
 
     void EntityControlComponent::HandleRemovedControlledEntity(const AZ::EntityId& entityId)
     {
-        AZ_Assert(O3deUtils::Misc::MultiplayerUtils::GetNetBindComponentAsserted(*this).IsNetEntityRoleAuthority(), "This logic is authority only.");
+        AZ_Assert(O3deUtils::GetNetBindComponentAsserted(*this).IsNetEntityRoleAuthority(), "This logic is authority only.");
 
         const AZ::EntityId& owningEntityId = GetEntityId();
 

@@ -6,7 +6,7 @@
 #include <AzCore/RTTI/BehaviorContext.h>
 #include <Multiplayer/NetworkEntity/INetworkEntityManager.h>
 #include <Multiplayer/IMultiplayer.h>
-#include <O3deUtils_Misc/MultiplayerUtils.h>
+#include <O3deUtils/Misc/MultiplayerUtils.h>
 #include <AzCore/Console/ILogger.h>
 #include <Multiplayer/NetworkEntity/NetworkEntityHandle.h>
 #include <Multiplayer/Components/NetBindComponent.h>
@@ -106,7 +106,7 @@ namespace xXGameProjectNameXx
             // `NetBindComponent::EnablePlayerHostAutonomy`.
             if (entity.GetState() != AZ::Entity::State::Active)
             {
-                const Multiplayer::NetBindComponent& netBindComponent = O3deUtils::Misc::MultiplayerUtils::GetNetBindComponentAsserted(GetOwner());
+                const Multiplayer::NetBindComponent& netBindComponent = O3deUtils::GetNetBindComponentAsserted(GetOwner());
                 if (netBindComponent.IsNetEntityRoleAuthority())
                 {
                     CreatePlayerEntities();
@@ -123,7 +123,7 @@ namespace xXGameProjectNameXx
 #if AZ_TRAIT_SERVER
     void PlayerEntityManagerComponentController::CreatePlayerEntities()
     {
-        AZ_Assert(O3deUtils::Misc::MultiplayerUtils::GetNetBindComponentAsserted(GetOwner()).IsNetEntityRoleAuthority(), "Should only be called on the authority.");
+        AZ_Assert(O3deUtils::GetNetBindComponentAsserted(GetOwner()).IsNetEntityRoleAuthority(), "Should only be called on the authority.");
 
         const AZ::Data::Asset<AzFramework::Spawnable>& spawnableAsset = GetOwnerCasted().m_playerEntitySpawnable.m_spawnableAsset;
 
@@ -198,7 +198,7 @@ namespace xXGameProjectNameXx
         constexpr Multiplayer::NetEntityRole netEntityRole = Multiplayer::NetEntityRole::Authority;
 
         Multiplayer::INetworkEntityManager::EntityList createdEntities =
-            O3deUtils::Misc::MultiplayerUtils::GetNetworkEntityManagerAsserted().CreateEntitiesImmediate(
+            O3deUtils::GetNetworkEntityManagerAsserted().CreateEntitiesImmediate(
                 playerEntityPrefab,
                 netEntityRole,
                 AZ::Transform::CreateIdentity());

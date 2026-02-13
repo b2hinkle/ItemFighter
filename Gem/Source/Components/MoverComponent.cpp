@@ -3,8 +3,8 @@
 
 #include <Multiplayer/Components/NetworkCharacterComponent.h>
 #include <AzCore/Debug/Trace.h>
-#include <O3deUtils_Core/AzCoreUtils.h>
-#include <O3deUtils_Core/AzCoreUtils.inl>
+#include <O3deUtils/Core/AzCoreUtils.h>
+#include <O3deUtils/Core/AzCoreUtils.inl>
 
 namespace
 {
@@ -134,7 +134,7 @@ namespace xXGameProjectNameXx
         const AZ::Entity& entity = *entityPtr;
 
         Multiplayer::MultiplayerController* controllerPtr =
-            O3deUtils::Core::AzCoreUtils::FindComponent<Multiplayer::NetworkCharacterComponent&>(entity).GetController();
+            O3deUtils::FindComponent<Multiplayer::NetworkCharacterComponent&>(entity).GetController();
         AZ_Assert(controllerPtr, "");
         Multiplayer::MultiplayerController& controller = *controllerPtr;
 

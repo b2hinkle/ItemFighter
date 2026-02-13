@@ -5,15 +5,15 @@
 #if AZ_TRAIT_CLIENT
 #include <LyShine/Bus/UiCanvasManagerBus.h>
 #include <LyShine/Bus/UiCanvasBus.h>
-#include <O3deUtils_Misc/Client/CanvasUtils.h>
+#include <O3deUtils/Misc/Client/CanvasUtils.h>
 #include <LyShine/Bus/UiCursorBus.h>
 #include <xXGameProjectNameXx/Client/UiActionNames.h>
 #endif // #if AZ_TRAIT_CLIENT
 #include <AzCore/Console/ILogger.h>
 #include <AzCore/Component/ComponentApplicationBus.h>
 #include <xXGameProjectNameXx/LevelNames.h>
-#include <O3deUtils_Misc/LevelSystemUtils.h>
-#include <O3deUtils_Misc/MultiplayerUtils.h>
+#include <O3deUtils/Misc/LevelSystemUtils.h>
+#include <O3deUtils/Misc/MultiplayerUtils.h>
 #include <Multiplayer/IMultiplayer.h>
 #include <AzNetworking/ConnectionLayer/ConnectionEnums.h>
 
@@ -71,25 +71,25 @@ namespace xXGameProjectNameXx::GameStates
         }
 
         // Make sure we aren't connected to any server before loading new levels.
-        if (O3deUtils::Misc::MultiplayerUtils::IsClient())
+        if (O3deUtils::IsClient())
         {
             AZStd::fixed_string<128> logString;
             logString += "Disconnecting from the server we're currently connected to, before loading to the new level.";
             AZLOG_INFO(logString.data());
 
-            O3deUtils::Misc::MultiplayerUtils::GetMultiplayerAsserted().Terminate(AzNetworking::DisconnectReason::TerminatedByUser);
+            O3deUtils::GetMultiplayerAsserted().Terminate(AzNetworking::DisconnectReason::TerminatedByUser);
         }
 
 #if AZ_TRAIT_SERVER
         // Make sure we are hosting before loading any network levels.
-        if (!O3deUtils::Misc::MultiplayerUtils::IsHosting())
+        if (!O3deUtils::IsHosting())
         {
-            O3deUtils::Misc::MultiplayerUtils::PerformHostCommand();
+            O3deUtils::PerformHostCommand();
         }
 #endif // #if AZ_TRAIT_SERVER
 
         // Actually load the level now.
-        O3deUtils::Misc::LevelSystemUtils::TryLoadLevel(levelNameToLoad);
+        O3deUtils::TryLoadLevel(levelNameToLoad);
     }
 #endif // #if AZ_TRAIT_CLIENT
 
@@ -122,7 +122,7 @@ namespace xXGameProjectNameXx::GameStates
     void StageSelect::OnPopped()
     {
 #if AZ_TRAIT_CLIENT
-        O3deUtils::Misc::CanvasUtils::UnloadCanvasIfStillActive(m_canvasEntityId);
+        O3deUtils::UnloadCanvasIfStillActive(m_canvasEntityId);
         m_canvasEntityId = AZ::EntityId{AZ::EntityId::InvalidEntityId};
 #endif // #if AZ_TRAIT_CLIENT
 
