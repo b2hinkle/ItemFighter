@@ -11,6 +11,7 @@
 #include <Multiplayer/NetworkEntity/NetworkEntityHandle.h>
 #include <AzCore/Component/TransformBus.h>
 #include <Multiplayer/Components/NetBindComponent.h>
+#include <O3deUtils/Core/AzFrameworkUtils.h>
 
 namespace xXGameProjectNameXx
 {
@@ -100,7 +101,7 @@ namespace xXGameProjectNameXx
     void EntitySpawnerComponent_OneOffAtTransforms::Activate()
     {
 #if AZ_TRAIT_SERVER
-        // @Christian: Note: We assume that the root spawnable is not ready during activation of this component. It will become ready once all the entities of the root spawnable have been created.
+        AZ_Assert(!O3deUtils::IsRootSpawnableReady(), "@Christian: We assume that the root spawnable is not ready during activation of this component. It will become ready once all the entities of the root spawnable have been created.");
         AzFramework::RootSpawnableNotificationBus::Handler::BusConnect();
 #endif // #if AZ_TRAIT_SERVER
     }
@@ -153,6 +154,8 @@ namespace xXGameProjectNameXx
 
             AZLOG_INFO(logString.data());
         }
+
+        AZ_Assert(O3deUtils::IsRootSpawnableReady(), "The level should be fully loaded at this point, because we are about to sample the transform from an entity reference from the level.");
 
         constexpr Multiplayer::NetEntityRole netEntityRole = Multiplayer::NetEntityRole::Authority;
 

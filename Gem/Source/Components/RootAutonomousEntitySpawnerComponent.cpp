@@ -10,6 +10,7 @@
 #include <AzCore/Console/ILogger.h>
 #include <Multiplayer/NetworkEntity/NetworkEntityHandle.h>
 #include <AzCore/Component/TransformBus.h>
+#include <O3deUtils/Core/AzFrameworkUtils.h>
 
 namespace xXGameProjectNameXx
 {
@@ -143,6 +144,8 @@ namespace xXGameProjectNameXx
 
     AZ::Transform RootAutonomousEntitySpawnerComponent::GetSpawnTransformFromEntityReference() const
     {
+        AZ_Assert(O3deUtils::IsRootSpawnableReady(), "The level should be fully loaded at this point, because we are about to sample the transform from an entity reference from the level.");
+
         AZ::Transform result{};
         AZ::TransformBus::EventResult(result, m_spawnTransformEntityReference, &AZ::TransformBus::Events::GetWorldTM);
         return result;
