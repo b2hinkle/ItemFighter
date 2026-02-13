@@ -158,10 +158,13 @@ namespace xXGameProjectNameXx
 
         for (const SpawnableAtTransform& spawnableAtTransform : m_spawnableAtTransformVector)
         {
+            const AZ::Data::Asset<AzFramework::Spawnable>& spawnableAsset = spawnableAtTransform.m_spawnable.m_spawnableAsset;
+
+            // Only spawn a single entity from the prefab, as this system expects only one entity.
+            Multiplayer::PrefabEntityId prefabEntityId = O3deUtils::MakeSinglePrefabEntityIdFromSpawnableAsset(spawnableAsset);
+
             AZ::Transform spawnTransform{};
             AZ::TransformBus::EventResult(spawnTransform, spawnableAtTransform.m_spawnTransformEntityReference, &AZ::TransformBus::Events::GetWorldTM);
-
-            Multiplayer::PrefabEntityId prefabEntityId = O3deUtils::MakeSinglePrefabEntityIdFromSpawnableAsset(spawnableAtTransform.m_spawnable.m_spawnableAsset);
 
             {
                 AZStd::fixed_string<256> logString;
@@ -191,7 +194,7 @@ namespace xXGameProjectNameXx
                 logString += __func__;
                 logString += "`: ";
                 logString += "Attempt to spawn prefab '";
-                logString += prefabEntityId.m_prefabName.GetStringView();
+                logString += spawnableAsset.GetHint();
                 logString += "' failed. No entities were spawned.";
                 logString += ' ';
                 logString += "Ensure that the prefab contains a single entity that is network enabled with a network binding component.";
