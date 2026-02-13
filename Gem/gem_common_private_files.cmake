@@ -24,4 +24,6 @@ list(APPEND FILES
     Source/PlayerSystemComponent.h
     Source/Components/EntityControlComponent.h
     Source/Components/EntityControlComponent.cpp
+    Source/Components/EntitySpawnerComponent_OneOffAtTransforms.h
+    Source/Components/EntitySpawnerComponent_OneOffAtTransforms.cpp
 )
