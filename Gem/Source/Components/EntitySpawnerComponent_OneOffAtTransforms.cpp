@@ -8,6 +8,7 @@
 #include <Multiplayer/IMultiplayer.h>
 #include <O3deUtils/Misc/MultiplayerUtils.h>
 #include <AzCore/Console/ILogger.h>
+#include <AzCore/Debug/Trace.h>
 #include <Multiplayer/NetworkEntity/NetworkEntityHandle.h>
 #include <AzCore/Component/TransformBus.h>
 #include <Multiplayer/Components/NetBindComponent.h>

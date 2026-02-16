@@ -1,0 +1,118 @@
+{
+    "ContainerEntity": {
+        "Id": "ContainerEntity",
+        "Name": "GameEntity",
+        "Components": {
+            "EditorDisabledCompositionComponent": {
+                "$type": "EditorDisabledCompositionComponent",
+                "Id": 358125860828795545
+            },
+            "EditorEntityIconComponent": {
+                "$type": "EditorEntityIconComponent",
+                "Id": 8678524025889438424
+            },
+            "EditorEntitySortComponent": {
+                "$type": "EditorEntitySortComponent",
+                "Id": 17177628616669891181,
+                "Child Entity Order": [
+                    "Entity_[355614555279]"
+                ]
+            },
+            "EditorInspectorComponent": {
+                "$type": "EditorInspectorComponent",
+                "Id": 18093747703937327977
+            },
+            "EditorLockComponent": {
+                "$type": "EditorLockComponent",
+                "Id": 2820030920060038431
+            },
+            "EditorOnlyEntityComponent": {
+                "$type": "EditorOnlyEntityComponent",
+                "Id": 3480213890398237045
+            },
+            "EditorPendingCompositionComponent": {
+                "$type": "EditorPendingCompositionComponent",
+                "Id": 12881272567840812242
+            },
+            "EditorPrefabComponent": {
+                "$type": "EditorPrefabComponent",
+                "Id": 13346286735209487441
+            },
+            "EditorVisibilityComponent": {
+                "$type": "EditorVisibilityComponent",
+                "Id": 3999428741101727972
+            },
+            "TransformComponent": {
+                "$type": "{27F1E1A1-8D9D-4C3B-BD3A-AFB9762449C0} TransformComponent",
+                "Id": 18092221596564707327,
+                "Parent Entity": ""
+            }
+        }
+    },
+    "Entities": {
+        "Entity_[355614555279]": {
+            "Id": "Entity_[355614555279]",
+            "Name": "GameEntity",
+            "Components": {
+                "EditorDisabledCompositionComponent": {
+                    "$type": "EditorDisabledCompositionComponent",
+                    "Id": 8530584060663613344
+                },
+                "EditorEntityIconComponent": {
+                    "$type": "EditorEntityIconComponent",
+                    "Id": 17427675567063596691
+                },
+                "EditorEntitySortComponent": {
+                    "$type": "EditorEntitySortComponent",
+                    "Id": 1407391773654802166
+                },
+                "EditorInspectorComponent": {
+                    "$type": "EditorInspectorComponent",
+                    "Id": 3289115603430802724
+                },
+                "EditorLockComponent": {
+                    "$type": "EditorLockComponent",
+                    "Id": 14285196006342567089
+                },
+                "EditorOnlyEntityComponent": {
+                    "$type": "EditorOnlyEntityComponent",
+                    "Id": 17040575391535540003
+                },
+                "EditorPendingCompositionComponent": {
+                    "$type": "EditorPendingCompositionComponent",
+                    "Id": 687429616230430703
+                },
+                "EditorTagComponent": {
+                    "$type": "EditorTagComponent",
+                    "Id": 4829006845759743628,
+                    "Tags": [
+                        "xXGameProjectNameXx.GameEntity"
+                    ]
+                },
+                "EditorVisibilityComponent": {
+                    "$type": "EditorVisibilityComponent",
+                    "Id": 5736646785450364615
+                },
+                "Multiplayer::NetworkTransformComponent": {
+                    "$type": "GenericComponentWrapper",
+                    "Id": 16878980592350481094,
+                    "m_template": {
+                        "$type": "Multiplayer::NetworkTransformComponent"
+                    }
+                },
+                "NetBindComponent": {
+                    "$type": "GenericComponentWrapper",
+                    "Id": 11065012368021096498,
+                    "m_template": {
+                        "$type": "NetBindComponent"
+                    }
+                },
+                "TransformComponent": {
+                    "$type": "{27F1E1A1-8D9D-4C3B-BD3A-AFB9762449C0} TransformComponent",
+                    "Id": 12913285630428126900,
+                    "Parent Entity": "ContainerEntity"
+                }
+            }
+        }
+    }
+}

@@ -186,7 +186,7 @@ namespace xXGameProjectNameXx
             logString += "Ensure that the prefab contains a single entity that is network enabled with a network binding component.";
 
             AZLOG_ERROR(logString.data());
-            return Multiplayer::NetworkEntityHandle{};
+            return {};
         }
 
         // Return the spawned entity. This will be made autonomous by the multiplayer system.

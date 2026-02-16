@@ -144,11 +144,7 @@ namespace xXGameProjectNameXx
                 return false;
             }
 
-            const AZ::Entity* entity = O3deUtils::GetNetworkEntityManagerAsserted().GetEntity(netEntityId).GetEntity();
-            AZ_Assert(entity, "Shouldn't be null.");
-
-            const AZ::EntityId entityId = entity->GetId();
-
+            const AZ::EntityId entityId = O3deUtils::GetEntityIdByNetEntityIdAsserted(netEntityId);
             HandleAddedControlledEntity(entityId);
             return true;
         }
@@ -229,11 +225,7 @@ namespace xXGameProjectNameXx
                 return false;
             }
 
-            const AZ::Entity* entity = O3deUtils::GetNetworkEntityManagerAsserted().GetEntity(netEntityId).GetEntity();
-            AZ_Assert(entity, "Shouldn't be null.");
-
-            const AZ::EntityId entityId = entity->GetId();
-
+            const AZ::EntityId entityId = O3deUtils::GetEntityIdByNetEntityIdAsserted(netEntityId);
             HandleRemovedControlledEntity(entityId);
             return true;
         }
