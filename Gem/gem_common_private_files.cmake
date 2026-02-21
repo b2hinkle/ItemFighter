@@ -26,4 +26,6 @@ list(APPEND FILES
     Source/Components/EntityControlComponent.cpp
     Source/Components/EntitySpawnerComponent_OneOffAtTransforms.h
     Source/Components/EntitySpawnerComponent_OneOffAtTransforms.cpp
+    Source/Components/HealthComponent.h
+    Source/Components/HealthComponent.cpp
 )
