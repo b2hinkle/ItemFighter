@@ -14,6 +14,7 @@
 #include <AzCore/Component/TransformBus.h>
 #include <AzCore/Component/Entity.h>
 #include <AzCore/std/algorithm.h>
+#include <O3deUtils/Core/AzCoreUtils.h>
 
 namespace xXGameProjectNameXx
 {
@@ -79,15 +80,8 @@ namespace xXGameProjectNameXx
             logString += __func__;
             logString += "`: ";
             logString += "Entity to control: ";
-
-            {
-                AZStd::fixed_string<32> entityIdString;
-                AZStd::to_string(entityIdString, entityId.operator AZ::u64());
-
-                logString += entityIdString;
-            }
-
-            logString += ".";
+            logString += O3deUtils::EntityIdToString(entityId);
+            logString += '.';
 
             AZLOG_INFO(logString.data());
         }
@@ -160,15 +154,8 @@ namespace xXGameProjectNameXx
             logString += __func__;
             logString += "`: ";
             logString += "Entity to uncontrol: ";
-
-            {
-                AZStd::fixed_string<32> entityIdString;
-                AZStd::to_string(entityIdString, entityId.operator AZ::u64());
-
-                logString += entityIdString;
-            }
-
-            logString += ".";
+            logString += O3deUtils::EntityIdToString(entityId);
+            logString += '.';
 
             AZLOG_INFO(logString.data());
         }

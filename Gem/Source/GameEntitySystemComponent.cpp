@@ -137,15 +137,16 @@ namespace xXGameProjectNameXx
                 AZLOG_INFO(logString.data());
             }
 
-            if (O3deUtils::IsNetworkEntityHandleSet(m_currentGameEntityHandle))
+            O3deUtils::ConstNetworkEntityHandleWithId currentGameEntityReference = GetCurrentGameEntityReference();
+
+            if (O3deUtils::IsNetworkEntityHandleSet(currentGameEntityReference.GetNetworkEntityHandle()))
             {
                 // It's okay if it's already set by an earlier point. I.e., set by `SpawnNewGameEntity`.
-                AZ_Assert(m_currentGameEntityHandle == entityHandle, "A second game entity is attempting to be used! Ignoring it.");
+                AZ_Assert(currentGameEntityReference.GetNetworkEntityHandle() == entityHandle, "A second game entity is attempting to be used! Ignoring it.");
             }
             else
             {
-                m_currentGameEntityHandle = entityHandle;
-                m_currentGameEntityId = entityLocalId;
+                currentGameEntityReference.Set(entityHandle, entityLocalId);
             }
         }
     }
@@ -168,8 +169,7 @@ namespace xXGameProjectNameXx
                 AZLOG_INFO(logString.data());
             }
 
-            m_currentGameEntityHandle.Reset();
-            m_currentGameEntityId.SetInvalid();
+            GetCurrentGameEntityReference().Reset();
         }
     }
 
@@ -182,7 +182,7 @@ namespace xXGameProjectNameXx
     void GameEntitySystemComponent::SpawnNewGameEntity()
     {
         AZ_Assert(HasAuthority(), "Should only be called on authority.");
-        AZ_Assert(!O3deUtils::IsNetworkEntityHandleSet(m_currentGameEntityHandle), "The current game entity handle should not already be set.");
+        AZ_Assert(!O3deUtils::IsNetworkEntityHandleSet(GetCurrentGameEntityReference().GetNetworkEntityHandle()), "The current game entity handle should not already be set.");
 
         {
             AZStd::fixed_string<256> logString;
@@ -196,8 +196,11 @@ namespace xXGameProjectNameXx
         }
 
         // @Christian: TODO: [todo] This assignment of the current entity references is redundant on the server.
-        m_currentGameEntityHandle = CreateGameEntity();
-        m_currentGameEntityId = O3deUtils::TryGetEntityIdByNetEntityId(m_currentGameEntityHandle.GetNetEntityId());
+
+        Multiplayer::ConstNetworkEntityHandle newGameEntityHandle = CreateGameEntity();
+        AZ::EntityId newGameEntityId = O3deUtils::TryGetEntityIdByNetEntityId(newGameEntityHandle.GetNetEntityId());
+
+        GetCurrentGameEntityReference().Set(newGameEntityHandle, newGameEntityId);
     }
 
     Multiplayer::NetworkEntityHandle GameEntitySystemComponent::CreateGameEntity() const

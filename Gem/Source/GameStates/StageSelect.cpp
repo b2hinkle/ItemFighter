@@ -16,6 +16,7 @@
 #include <O3deUtils/Misc/MultiplayerUtils.h>
 #include <Multiplayer/IMultiplayer.h>
 #include <AzNetworking/ConnectionLayer/ConnectionEnums.h>
+#include <O3deUtils/Core/AzCoreUtils.h>
 
 namespace xXGameProjectNameXx::GameStates
 {
@@ -30,14 +31,7 @@ namespace xXGameProjectNameXx::GameStates
             logString += "` called.";
             logString += ' ';
             logString += "Entity id: ";
-
-            {
-                AZStd::fixed_string<32> entityIdString;
-                AZStd::to_string(entityIdString, entityId.operator AZ::u64());
-
-                logString += entityIdString;
-            }
-
+            logString += O3deUtils::EntityIdToString(entityId);
             logString += ".";
             logString += ' ';
             logString += "Action name: '";

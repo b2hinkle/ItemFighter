@@ -10,6 +10,7 @@
 #include <Multiplayer/NetworkEntity/INetworkEntityManager.h>
 #include <LmbrCentral/Scripting/TagComponentBus.h>
 #include <AzCore/Component/EntityId.h>
+#include <O3deUtils/Misc/NetworkEntityHandleWithId.h>
 
 namespace xXGameProjectNameXx
 {
@@ -69,6 +70,13 @@ namespace xXGameProjectNameXx
 
     private:
 
+        O3deUtils::ConstNetworkEntityHandleWithId GetCurrentGameEntityReference()
+        {
+            return O3deUtils::ConstNetworkEntityHandleWithId{m_currentGameEntityHandle, m_currentGameEntityId};
+        }
+
+    private:
+
         Multiplayer::ControllersActivatedEvent::Handler m_onNetworkEntityControllersActivatedHandler{
             [this](const Multiplayer::ConstNetworkEntityHandle& entityHandle, Multiplayer::EntityIsMigrating entityIsMigrating)
             {
@@ -83,9 +91,12 @@ namespace xXGameProjectNameXx
             }
         };
 
-        // @Christian: TODO: Combine these together in a struct and encapsulate them to ensure they both always get assigned and
-        // don't get out of sync. Idea: We can make it a struct of references so that we aren't forcing a memory layout on people.
+        // @Christian: TODO: [todo] It'd be nice if we could emit compiler errors if these encapsulated data
+        // members were ever accessed directly without going through `GetCurrentGameEntityReference`.
         Multiplayer::ConstNetworkEntityHandle m_currentGameEntityHandle{};
+
+        // @Christian: TODO: [todo] It'd be nice if we could emit compiler errors if these encapsulated data
+        // members were ever accessed directly without going through `GetCurrentGameEntityReference`.
         AZ::EntityId m_currentGameEntityId{};
     };
 }
