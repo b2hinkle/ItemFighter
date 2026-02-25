@@ -15,4 +15,5 @@ list(APPEND FILES
     Include/xXGameProjectNameXx/PlayerBus.h
     Include/xXGameProjectNameXx/EntityControlInterface.h
     Include/xXGameProjectNameXx/GameEntityBus.h
+    Include/xXGameProjectNameXx/HealthInterface.h
 )

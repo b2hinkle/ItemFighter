@@ -28,4 +28,6 @@ list(APPEND FILES
     Source/Components/EntitySpawnerComponent_OneOffAtTransforms.cpp
     Source/GameEntitySystemComponent.h
     Source/GameEntitySystemComponent.cpp
+    Source/Components/HealthComponent.h
+    Source/Components/HealthComponent.cpp
 )

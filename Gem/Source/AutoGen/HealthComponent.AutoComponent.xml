@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<Component
+    Name="HealthComponent"
+    Namespace="xXGameProjectNameXx"
+    OverrideComponent="true"
+    OverrideController="true"
+    OverrideInclude="Source/Components/HealthComponent.h"
+    Description=""
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <Include File="xXGameProjectNameXx/HealthInterface.h" />
+    <Include File="Multiplayer/MultiplayerTypes.h" />
+
+    <NetworkProperty Type="float" Name="health" Init="{}" ReplicateFrom="Authority" ReplicateTo="Client" Container="Object" IsPublic="true" IsRewindable="true" IsPredictable="true" ExposeToEditor="false" ExposeToScript="false" GenerateEventBindings="false" Description="" />
+
+</Component>

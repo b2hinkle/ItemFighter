@@ -28,4 +28,5 @@ list(APPEND FILES
     Source/AutoGen/PlayerEntityManagerComponent.AutoComponent.xml
     Source/AutoGen/StageSelectGameStateLevelComponent.GameStateLevelComponent.xml
     Source/AutoGen/EntityControlComponent.AutoComponent.xml
+    Source/AutoGen/HealthComponent.AutoComponent.xml
 )

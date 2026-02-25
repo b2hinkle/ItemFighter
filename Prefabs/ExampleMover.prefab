@@ -120,6 +120,13 @@
                     "$type": "EditorVisibilityComponent",
                     "Id": 3899597929220889849
                 },
+                "HealthComponent": {
+                    "$type": "GenericComponentWrapper",
+                    "Id": 7073004581548262390,
+                    "m_template": {
+                        "$type": "HealthComponent"
+                    }
+                },
                 "InputConfigurationComponent": {
                     "$type": "GenericComponentWrapper",
                     "Id": 12987946607119042366,
