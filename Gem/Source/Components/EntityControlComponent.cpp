@@ -105,14 +105,7 @@ namespace xXGameProjectNameXx
             logString += __func__;
             logString += "`: ";
             logString += "Entity to control: ";
-
-            {
-                AZStd::fixed_string<32> entityIdString;
-                AZStd::to_string(entityIdString, netEntityId);
-
-                logString += entityIdString;
-            }
-
+            logString += O3deUtils::NetEntityIdToString(netEntityId);
             logString += ".";
 
             AZLOG_INFO(logString.data());
@@ -179,14 +172,7 @@ namespace xXGameProjectNameXx
             logString += __func__;
             logString += "`: ";
             logString += "Entity to uncontrol: ";
-
-            {
-                AZStd::fixed_string<32> entityIdString;
-                AZStd::to_string(entityIdString, netEntityId);
-
-                logString += entityIdString;
-            }
-
+            logString += O3deUtils::NetEntityIdToString(netEntityId);
             logString += ".";
 
             AZLOG_ERROR(logString.data());
