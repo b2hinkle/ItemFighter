@@ -52,6 +52,12 @@ namespace xXGameProjectNameXx
         void Deactivate() override;
         //! @}
 
+        //! GameEntityRequestBus::Handler protected overrides.
+        //! @{
+        AZ::EntityId GetGameEntityId() const override;
+        Multiplayer::ConstNetworkEntityHandle GetGameEntityNetworkHandle() const override;
+        //! @}
+
         //! AzFramework::RootSpawnableNotificationBus::Handler protected overrides.
         //! @{
         void OnRootSpawnableAssigned(AZ::Data::Asset<AzFramework::Spawnable> rootSpawnable, uint32_t generation) override;

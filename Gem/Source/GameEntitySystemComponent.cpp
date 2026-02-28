@@ -94,6 +94,18 @@ namespace xXGameProjectNameXx
         m_onNetworkEntityControllersDeactivatedHandler.Disconnect();
     }
 
+    AZ::EntityId GameEntitySystemComponent::GetGameEntityId() const
+    {
+        // @Christian: Remark: It might be nicer for these to go through the `GetCurrentGameEntityReference` function if we made a const overload for it.
+        return m_currentGameEntityId;
+    }
+
+    Multiplayer::ConstNetworkEntityHandle GameEntitySystemComponent::GetGameEntityNetworkHandle() const
+    {
+        // @Christian: Remark: It might be nicer for these to go through the `GetCurrentGameEntityReference` function if we made a const overload for it.
+        return m_currentGameEntityHandle;
+    }
+
     void GameEntitySystemComponent::OnRootSpawnableAssigned([[maybe_unused]] AZ::Data::Asset<AzFramework::Spawnable> rootSpawnable, [[maybe_unused]] uint32_t generation)
     {
     }
