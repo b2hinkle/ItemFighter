@@ -1,7 +1,7 @@
 {
     "ContainerEntity": {
         "Id": "ContainerEntity",
-        "Name": "GameEntity",
+        "Name": "LevelGameEntity",
         "Components": {
             "EditorDisabledCompositionComponent": {
                 "$type": "EditorDisabledCompositionComponent",
@@ -52,7 +52,7 @@
     "Entities": {
         "Entity_[355614555279]": {
             "Id": "Entity_[355614555279]",
-            "Name": "GameEntity",
+            "Name": "LevelGameEntity",
             "Components": {
                 "EditorDisabledCompositionComponent": {
                     "$type": "EditorDisabledCompositionComponent",
@@ -86,7 +86,7 @@
                     "$type": "EditorTagComponent",
                     "Id": 4829006845759743628,
                     "Tags": [
-                        "xXGameProjectNameXx.GameEntity"
+                        "xXGameProjectNameXx.LevelGameEntity"
                     ]
                 },
                 "EditorVisibilityComponent": {

@@ -1,5 +1,5 @@
 {
     "xXGameProjectNameXx": {
-        "GameEntityNetworkSpawnablePathname": "prefabs/gameentity.network.spawnable"
+        "LevelGameEntityNetworkSpawnablePathname": "prefabs/levelgameentity.network.spawnable"
     }
 }

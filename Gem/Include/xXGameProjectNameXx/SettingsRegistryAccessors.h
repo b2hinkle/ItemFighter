@@ -39,8 +39,8 @@ namespace xXGameProjectNameXx::SettingsRegistryAccessors
     }
 #endif // #if AZ_TRAIT_CLIENT
 
-    constexpr AZStd::string_view GameEntityPrefabPathname = "/xXGameProjectNameXx/GameEntityNetworkSpawnablePathname";
+    constexpr AZStd::string_view LevelGameEntityPrefabPathname = "/xXGameProjectNameXx/LevelGameEntityNetworkSpawnablePathname";
 
-    XXGAMEPROJECTNAMEXX_API AZStd::optional<AZ::SettingsRegistryInterface::FixedValueString> TryGetGameEntityPrefabPathname();
-    XXGAMEPROJECTNAMEXX_API AZStd::optional<AZ::Data::Asset<AzFramework::Spawnable>> TryGetGameEntityPrefabAsset();
+    XXGAMEPROJECTNAMEXX_API AZStd::optional<AZ::SettingsRegistryInterface::FixedValueString> TryGetLevelGameEntityPrefabPathname();
+    XXGAMEPROJECTNAMEXX_API AZStd::optional<AZ::Data::Asset<AzFramework::Spawnable>> TryGetLevelGameEntityPrefabAsset();
 } // namespace xXGameProjectNameXx

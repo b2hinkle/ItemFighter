@@ -1,5 +1,5 @@
 
-#include <Source/GameEntitySystemComponent.h>
+#include <Source/LevelGameEntitySystemComponent.h>
 
 #include <xXGameProjectNameXx/xXGameProjectNameXxTypeIds.h>
 #include <AzCore/Serialization/SerializeContext.h>
@@ -15,117 +15,117 @@
 
 namespace xXGameProjectNameXx
 {
-    bool IsGameEntity(const AZ::EntityId& entityId)
+    bool IsLevelGameEntity(const AZ::EntityId& entityId)
     {
         // @Christian: TODO: [todo][techdebt][tag] Use a proper "gameplay tag" system instead of LmbrCentral's tag component.
         bool result{};
-        LmbrCentral::TagComponentRequestBus::EventResult(result, entityId, &LmbrCentral::TagComponentRequestBus::Handler::HasTag, GameEntityTag);
+        LmbrCentral::TagComponentRequestBus::EventResult(result, entityId, &LmbrCentral::TagComponentRequestBus::Handler::HasTag, LevelGameEntityTag);
         return result;
     }
 
-    AZ_COMPONENT_IMPL(GameEntitySystemComponent, "GameEntitySystemComponent",
-        GetTypeId<GameEntitySystemComponent>());
+    AZ_COMPONENT_IMPL(LevelGameEntitySystemComponent, "LevelGameEntitySystemComponent",
+        GetTypeId<LevelGameEntitySystemComponent>());
 
-    void GameEntitySystemComponent::Reflect(AZ::ReflectContext* context)
+    void LevelGameEntitySystemComponent::Reflect(AZ::ReflectContext* context)
     {
         if (auto serializeContext = azrtti_cast<AZ::SerializeContext*>(context))
         {
-            serializeContext->Class<GameEntitySystemComponent, AZ::Component>()
+            serializeContext->Class<LevelGameEntitySystemComponent, AZ::Component>()
                 ->Version(0)
                 ;
         }
     }
 
-    void GameEntitySystemComponent::GetProvidedServices(AZ::ComponentDescriptor::DependencyArrayType& provided)
+    void LevelGameEntitySystemComponent::GetProvidedServices(AZ::ComponentDescriptor::DependencyArrayType& provided)
     {
-        provided.push_back(AZ_CRC_CE("GameEntityService"));
+        provided.push_back(AZ_CRC_CE("LevelGameEntityService"));
     }
 
-    void GameEntitySystemComponent::GetIncompatibleServices(AZ::ComponentDescriptor::DependencyArrayType& incompatible)
+    void LevelGameEntitySystemComponent::GetIncompatibleServices(AZ::ComponentDescriptor::DependencyArrayType& incompatible)
     {
-        incompatible.push_back(AZ_CRC_CE("GameEntityService"));
+        incompatible.push_back(AZ_CRC_CE("LevelGameEntityService"));
     }
 
-    void GameEntitySystemComponent::GetRequiredServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& required)
+    void LevelGameEntitySystemComponent::GetRequiredServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& required)
     {
         required.push_back(AZ_CRC_CE("MultiplayerService"));
     }
 
-    void GameEntitySystemComponent::GetDependentServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& dependent)
+    void LevelGameEntitySystemComponent::GetDependentServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& dependent)
     {
         dependent.push_back(AZ_CRC_CE("MultiplayerService"));
     }
 
-    GameEntitySystemComponent::GameEntitySystemComponent()
+    LevelGameEntitySystemComponent::LevelGameEntitySystemComponent()
     {
-        if (GameEntityInterface::Get() == nullptr)
+        if (LevelGameEntityInterface::Get() == nullptr)
         {
-            GameEntityInterface::Register(this);
+            LevelGameEntityInterface::Register(this);
         }
     }
 
-    GameEntitySystemComponent::~GameEntitySystemComponent()
+    LevelGameEntitySystemComponent::~LevelGameEntitySystemComponent()
     {
-        if (GameEntityInterface::Get() == this)
+        if (LevelGameEntityInterface::Get() == this)
         {
-            GameEntityInterface::Unregister(this);
+            LevelGameEntityInterface::Unregister(this);
         }
     }
 
-    void GameEntitySystemComponent::Init()
+    void LevelGameEntitySystemComponent::Init()
     {
     }
 
-    void GameEntitySystemComponent::Activate()
+    void LevelGameEntitySystemComponent::Activate()
     {
-        GameEntityRequestBus::Handler::BusConnect();
+        LevelGameEntityRequestBus::Handler::BusConnect();
         AzFramework::RootSpawnableNotificationBus::Handler::BusConnect();
 
         O3deUtils::GetNetworkEntityManagerAsserted().AddControllersActivatedHandler(m_onNetworkEntityControllersActivatedHandler);
         O3deUtils::GetNetworkEntityManagerAsserted().AddControllersDeactivatedHandler(m_onNetworkEntityControllersDeactivatedHandler);
     }
 
-    void GameEntitySystemComponent::Deactivate()
+    void LevelGameEntitySystemComponent::Deactivate()
     {
-        GameEntityRequestBus::Handler::BusDisconnect();
+        LevelGameEntityRequestBus::Handler::BusDisconnect();
         AzFramework::RootSpawnableNotificationBus::Handler::BusDisconnect();
 
         m_onNetworkEntityControllersActivatedHandler.Disconnect();
         m_onNetworkEntityControllersDeactivatedHandler.Disconnect();
     }
 
-    AZ::EntityId GameEntitySystemComponent::GetGameEntityId() const
+    AZ::EntityId LevelGameEntitySystemComponent::GetLevelGameEntityId() const
     {
-        // @Christian: Remark: It might be nicer for these to go through the `GetCurrentGameEntityReference` function if we made a const overload for it.
-        return m_currentGameEntityId;
+        // @Christian: Remark: It might be nicer for these to go through the `GetCurrentLevelGameEntityReference` function if we made a const overload for it.
+        return m_currentLevelGameEntityId;
     }
 
-    Multiplayer::ConstNetworkEntityHandle GameEntitySystemComponent::GetGameEntityNetworkHandle() const
+    Multiplayer::ConstNetworkEntityHandle LevelGameEntitySystemComponent::GetLevelGameEntityNetworkHandle() const
     {
-        // @Christian: Remark: It might be nicer for these to go through the `GetCurrentGameEntityReference` function if we made a const overload for it.
-        return m_currentGameEntityHandle;
+        // @Christian: Remark: It might be nicer for these to go through the `GetCurrentLevelGameEntityReference` function if we made a const overload for it.
+        return m_currentLevelGameEntityHandle;
     }
 
-    void GameEntitySystemComponent::OnRootSpawnableAssigned([[maybe_unused]] AZ::Data::Asset<AzFramework::Spawnable> rootSpawnable, [[maybe_unused]] uint32_t generation)
+    void LevelGameEntitySystemComponent::OnRootSpawnableAssigned([[maybe_unused]] AZ::Data::Asset<AzFramework::Spawnable> rootSpawnable, [[maybe_unused]] uint32_t generation)
     {
     }
 
-    void GameEntitySystemComponent::OnRootSpawnableReady([[maybe_unused]] AZ::Data::Asset<AzFramework::Spawnable> rootSpawnable, [[maybe_unused]] uint32_t generation)
+    void LevelGameEntitySystemComponent::OnRootSpawnableReady([[maybe_unused]] AZ::Data::Asset<AzFramework::Spawnable> rootSpawnable, [[maybe_unused]] uint32_t generation)
     {
 #if AZ_TRAIT_SERVER
         if (HasAuthority())
         {
-            // Whenever the root spawnable is ready (i.e., when a level has finished loading) spawn the "game entity".
-            SpawnNewGameEntity();
+            // Whenever the root spawnable is ready (i.e., when a level has finished loading) spawn the "level game entity".
+            SpawnNewLevelGameEntity();
         }
 #endif // #if AZ_TRAIT_SERVER
     }
 
-    void GameEntitySystemComponent::OnRootSpawnableReleased([[maybe_unused]] uint32_t generation)
+    void LevelGameEntitySystemComponent::OnRootSpawnableReleased([[maybe_unused]] uint32_t generation)
     {
     }
 
-    void GameEntitySystemComponent::OnNetworkEntityControllersActivated(
+    void LevelGameEntitySystemComponent::OnNetworkEntityControllersActivated(
         [[maybe_unused]] const Multiplayer::ConstNetworkEntityHandle& entityHandle,
         [[maybe_unused]] Multiplayer::EntityIsMigrating entityIsMigrating)
     {
@@ -136,7 +136,7 @@ namespace xXGameProjectNameXx
 #endif // #if 0
 
         const AZ::EntityId entityLocalId = O3deUtils::TryGetEntityIdByNetEntityId(entityHandle.GetNetEntityId());
-        if (IsGameEntity(entityLocalId))
+        if (IsLevelGameEntity(entityLocalId))
         {
             {
                 AZStd::fixed_string<256> logString;
@@ -144,31 +144,31 @@ namespace xXGameProjectNameXx
                 logString += '`';
                 logString += __func__;
                 logString += "`: ";
-                logString += "Handling game entity on controllers activated. We will set the current game entity handle.";
+                logString += "Handling level game entity on controllers activated. We will set the current level game entity handle.";
 
                 AZLOG_INFO(logString.data());
             }
 
-            O3deUtils::ConstNetworkEntityHandleWithId currentGameEntityReference = GetCurrentGameEntityReference();
+            O3deUtils::ConstNetworkEntityHandleWithId currentLevelGameEntityReference = GetCurrentLevelGameEntityReference();
 
-            if (O3deUtils::IsNetworkEntityHandleSet(currentGameEntityReference.GetNetworkEntityHandle()))
+            if (O3deUtils::IsNetworkEntityHandleSet(currentLevelGameEntityReference.GetNetworkEntityHandle()))
             {
-                // It's okay if it's already set by an earlier point. I.e., set by `SpawnNewGameEntity`.
-                AZ_Assert(currentGameEntityReference.GetNetworkEntityHandle() == entityHandle, "A second game entity is attempting to be used! Ignoring it.");
+                // It's okay if it's already set by an earlier point. I.e., set by `SpawnNewLevelGameEntity`.
+                AZ_Assert(currentLevelGameEntityReference.GetNetworkEntityHandle() == entityHandle, "A second level game entity is attempting to be used! Ignoring it.");
             }
             else
             {
-                currentGameEntityReference.Set(entityHandle, entityLocalId);
+                currentLevelGameEntityReference.Set(entityHandle, entityLocalId);
             }
         }
     }
 
-    void GameEntitySystemComponent::OnNetworkEntityControllersDeactivated(
+    void LevelGameEntitySystemComponent::OnNetworkEntityControllersDeactivated(
         [[maybe_unused]] const Multiplayer::ConstNetworkEntityHandle& entityHandle,
         [[maybe_unused]] Multiplayer::EntityIsMigrating entityIsMigrating)
     {
         const AZ::EntityId entityLocalId = O3deUtils::GetEntityIdByNetEntityIdAsserted(entityHandle.GetNetEntityId());
-        if (IsGameEntity(entityLocalId))
+        if (IsLevelGameEntity(entityLocalId))
         {
             {
                 AZStd::fixed_string<256> logString;
@@ -176,25 +176,25 @@ namespace xXGameProjectNameXx
                 logString += '`';
                 logString += __func__;
                 logString += "`: ";
-                logString += "Handling game entity on controllers deactivated. We will reset the current game entity handle.";
+                logString += "Handling level game entity on controllers deactivated. We will reset the current level game entity handle.";
 
                 AZLOG_INFO(logString.data());
             }
 
-            GetCurrentGameEntityReference().Reset();
+            GetCurrentLevelGameEntityReference().Reset();
         }
     }
 
 #if AZ_TRAIT_SERVER
-    bool GameEntitySystemComponent::HasAuthority() const
+    bool LevelGameEntitySystemComponent::HasAuthority() const
     {
         return O3deUtils::IsHosting();
     }
 
-    void GameEntitySystemComponent::SpawnNewGameEntity()
+    void LevelGameEntitySystemComponent::SpawnNewLevelGameEntity()
     {
         AZ_Assert(HasAuthority(), "Should only be called on authority.");
-        AZ_Assert(!O3deUtils::IsNetworkEntityHandleSet(GetCurrentGameEntityReference().GetNetworkEntityHandle()), "The current game entity handle should not already be set.");
+        AZ_Assert(!O3deUtils::IsNetworkEntityHandleSet(GetCurrentLevelGameEntityReference().GetNetworkEntityHandle()), "The current level game entity handle should not already be set.");
 
         {
             AZStd::fixed_string<256> logString;
@@ -202,20 +202,20 @@ namespace xXGameProjectNameXx
             logString += '`';
             logString += __func__;
             logString += "`: ";
-            logString += "Spawning new game entity and assigning it as the current.";
+            logString += "Spawning new level game entity and assigning it as the current.";
 
             AZLOG_INFO(logString.data());
         }
 
         // @Christian: TODO: [todo] This assignment of the current entity references is redundant on the server.
 
-        Multiplayer::ConstNetworkEntityHandle newGameEntityHandle = CreateGameEntity();
-        AZ::EntityId newGameEntityId = O3deUtils::TryGetEntityIdByNetEntityId(newGameEntityHandle.GetNetEntityId());
+        Multiplayer::ConstNetworkEntityHandle newLevelGameEntityHandle = CreateLevelGameEntity();
+        AZ::EntityId newLevelGameEntityId = O3deUtils::TryGetEntityIdByNetEntityId(newLevelGameEntityHandle.GetNetEntityId());
 
-        GetCurrentGameEntityReference().Set(newGameEntityHandle, newGameEntityId);
+        GetCurrentLevelGameEntityReference().Set(newLevelGameEntityHandle, newLevelGameEntityId);
     }
 
-    Multiplayer::NetworkEntityHandle GameEntitySystemComponent::CreateGameEntity() const
+    Multiplayer::NetworkEntityHandle LevelGameEntitySystemComponent::CreateLevelGameEntity() const
     {
         AZ_Assert(HasAuthority(), "Should only be called on authority.");
 
@@ -232,7 +232,7 @@ namespace xXGameProjectNameXx
 
         AZ_Assert(O3deUtils::IsRootSpawnableReady(), "The level should be fully loaded at this point, because we are about to sample the transform from an entity reference from the level.");
 
-        AZStd::optional<AZ::Data::Asset<AzFramework::Spawnable>> spawnableAsset = SettingsRegistryAccessors::TryGetGameEntityPrefabAsset();
+        AZStd::optional<AZ::Data::Asset<AzFramework::Spawnable>> spawnableAsset = SettingsRegistryAccessors::TryGetLevelGameEntityPrefabAsset();
         if (!spawnableAsset.has_value())
         {
             AZStd::fixed_string<256> logString;

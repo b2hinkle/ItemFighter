@@ -61,19 +61,19 @@ namespace xXGameProjectNameXx::SettingsRegistryAccessors
     }
 #endif // #if AZ_TRAIT_CLIENT
 
-    AZStd::optional<AZ::SettingsRegistryInterface::FixedValueString> TryGetGameEntityPrefabPathname()
+    AZStd::optional<AZ::SettingsRegistryInterface::FixedValueString> TryGetLevelGameEntityPrefabPathname()
     {
         const AZ::SettingsRegistryInterface* settingsRegistry = AZ::SettingsRegistry::Get();
         AZ_Assert(settingsRegistry, "Should be valid.");
 
         AZ::SettingsRegistryInterface::FixedValueString result;
-        const bool hasRetrievedValue = settingsRegistry->Get(result, GameEntityPrefabPathname);
+        const bool hasRetrievedValue = settingsRegistry->Get(result, LevelGameEntityPrefabPathname);
 
         if (!hasRetrievedValue)
         {
             AZStd::fixed_string<256> message;
             message += "No value specified for settings registry path '";
-            message += GameEntityPrefabPathname;
+            message += LevelGameEntityPrefabPathname;
             message += "'. Returning nullopt.";
 
             AZLOG_INFO(message.data());
@@ -83,9 +83,9 @@ namespace xXGameProjectNameXx::SettingsRegistryAccessors
         return result;
     }
 
-    AZStd::optional<AZ::Data::Asset<AzFramework::Spawnable>> TryGetGameEntityPrefabAsset()
+    AZStd::optional<AZ::Data::Asset<AzFramework::Spawnable>> TryGetLevelGameEntityPrefabAsset()
     {
-        AZStd::optional path = SettingsRegistryAccessors::TryGetGameEntityPrefabPathname();
+        AZStd::optional path = SettingsRegistryAccessors::TryGetLevelGameEntityPrefabPathname();
         if (!path.has_value())
         {
             AZStd::fixed_string<256> logString;
@@ -117,7 +117,7 @@ namespace xXGameProjectNameXx::SettingsRegistryAccessors
             logString += '`';
             logString += __func__;
             logString += "`: ";
-            logString += "Settings registry's game entity prefab pathname gave us an invalid asset id. Returning nullopt.";
+            logString += "Settings registry's level game entity prefab pathname gave us an invalid asset id. Returning nullopt.";
 
             AZLOG_ERROR(logString.data());
             return AZStd::nullopt;

@@ -10,8 +10,8 @@ namespace xXGameProjectNameXx
     class xXGameProjectNameXxRequests;
     class PlayerSystemComponent;
     class PlayerRequests;
-    class GameEntitySystemComponent;
-    class GameEntityRequests;
+    class LevelGameEntitySystemComponent;
+    class LevelGameEntityRequests;
 }
 
 namespace xXGameProjectNameXx
@@ -60,13 +60,13 @@ namespace xXGameProjectNameXx
     };
 
     template <>
-    struct TypeIdTrait<GameEntitySystemComponent>
+    struct TypeIdTrait<LevelGameEntitySystemComponent>
     {
         static inline constexpr AZStd::string_view value = "{FD0590C7-9F6F-4385-A74E-4FF8FD8DA656}";
     };
 
     template <>
-    struct TypeIdTrait<GameEntityRequests>
+    struct TypeIdTrait<LevelGameEntityRequests>
     {
         static inline constexpr AZStd::string_view value = "{4B94AC11-5A3E-41D5-9159-125C1A90CF3E}";
     };

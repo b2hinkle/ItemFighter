@@ -3,7 +3,7 @@
 
 #include <AzCore/Component/Component.h>
 
-#include <xXGameProjectNameXx/GameEntityBus.h>
+#include <xXGameProjectNameXx/LevelGameEntityBus.h>
 #include <AzFramework/Spawnable/RootSpawnableInterface.h>
 #include <Multiplayer/NetworkEntity/NetworkEntityHandle.h>
 #include <Multiplayer/MultiplayerTypes.h>
@@ -14,25 +14,23 @@
 
 namespace xXGameProjectNameXx
 {
-    static bool IsGameEntity(const AZ::EntityId& entityId);
+    static bool IsLevelGameEntity(const AZ::EntityId& entityId);
 
     // @Christian: TODO: [todo][techdebt][tag] Use a proper "gameplay tag" system instead of LmbrCentral's tag component.
-    constexpr LmbrCentral::Tag GameEntityTag = AZ_CRC_CE("xXGameProjectNameXx.GameEntity");
+    constexpr LmbrCentral::Tag LevelGameEntityTag = AZ_CRC_CE("xXGameProjectNameXx.LevelGameEntity");
 
     //! @brief
-    //! @todo @Christian: TODO: [todo][naming] Rename "game entity" to something that doesn't conflict with the engine's existing
-    //!       terminology for what a "game" entity already is ("game" entities are basically just non-editor entities).
-    class GameEntitySystemComponent
+    class LevelGameEntitySystemComponent
         : public AZ::Component
-        , protected GameEntityRequestBus::Handler
+        , protected LevelGameEntityRequestBus::Handler
         , protected AzFramework::RootSpawnableNotificationBus::Handler
     {
     public:
 
-        AZ_COMPONENT_DECL(GameEntitySystemComponent);
+        AZ_COMPONENT_DECL(LevelGameEntitySystemComponent);
 
-        GameEntitySystemComponent();
-        ~GameEntitySystemComponent() override;
+        LevelGameEntitySystemComponent();
+        ~LevelGameEntitySystemComponent() override;
 
         //! Component descriptor interface.
         //! @{
@@ -52,10 +50,10 @@ namespace xXGameProjectNameXx
         void Deactivate() override;
         //! @}
 
-        //! GameEntityRequestBus::Handler protected overrides.
+        //! LevelGameEntityRequestBus::Handler protected overrides.
         //! @{
-        AZ::EntityId GetGameEntityId() const override;
-        Multiplayer::ConstNetworkEntityHandle GetGameEntityNetworkHandle() const override;
+        AZ::EntityId GetLevelGameEntityId() const override;
+        Multiplayer::ConstNetworkEntityHandle GetLevelGameEntityNetworkHandle() const override;
         //! @}
 
         //! AzFramework::RootSpawnableNotificationBus::Handler protected overrides.
@@ -70,15 +68,15 @@ namespace xXGameProjectNameXx
 
 #if AZ_TRAIT_SERVER
         bool HasAuthority() const;
-        void SpawnNewGameEntity();
-        Multiplayer::NetworkEntityHandle CreateGameEntity() const;
+        void SpawnNewLevelGameEntity();
+        Multiplayer::NetworkEntityHandle CreateLevelGameEntity() const;
 #endif // #if AZ_TRAIT_SERVER
 
     private:
 
-        O3deUtils::ConstNetworkEntityHandleWithId GetCurrentGameEntityReference()
+        O3deUtils::ConstNetworkEntityHandleWithId GetCurrentLevelGameEntityReference()
         {
-            return O3deUtils::ConstNetworkEntityHandleWithId{m_currentGameEntityHandle, m_currentGameEntityId};
+            return O3deUtils::ConstNetworkEntityHandleWithId{m_currentLevelGameEntityHandle, m_currentLevelGameEntityId};
         }
 
     private:
@@ -98,11 +96,11 @@ namespace xXGameProjectNameXx
         };
 
         // @Christian: TODO: [todo] It'd be nice if we could emit compiler errors if these encapsulated data
-        // members were ever accessed directly without going through `GetCurrentGameEntityReference`.
-        Multiplayer::ConstNetworkEntityHandle m_currentGameEntityHandle{};
+        // members were ever accessed directly without going through `GetCurrentLevelGameEntityReference`.
+        Multiplayer::ConstNetworkEntityHandle m_currentLevelGameEntityHandle{};
 
         // @Christian: TODO: [todo] It'd be nice if we could emit compiler errors if these encapsulated data
-        // members were ever accessed directly without going through `GetCurrentGameEntityReference`.
-        AZ::EntityId m_currentGameEntityId{};
+        // members were ever accessed directly without going through `GetCurrentLevelGameEntityReference`.
+        AZ::EntityId m_currentLevelGameEntityId{};
     };
 }
