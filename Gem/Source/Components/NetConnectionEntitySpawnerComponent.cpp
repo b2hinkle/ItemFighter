@@ -1,5 +1,5 @@
 
-#include <Source/Components/RootAutonomousEntitySpawnerComponent.h>
+#include <Source/Components/NetConnectionEntitySpawnerComponent.h>
 
 #include <AzCore/Serialization/SerializeContext.h>
 #include <AzCore/Serialization/EditContext.h>
@@ -14,80 +14,80 @@
 
 namespace xXGameProjectNameXx
 {
-    AZ_COMPONENT_IMPL(RootAutonomousEntitySpawnerComponent, "RootAutonomousEntitySpawnerComponent", "{5C317DF1-7BD8-4CB2-8A4C-263740B14064}");
+    AZ_COMPONENT_IMPL(NetConnectionEntitySpawnerComponent, "NetConnectionEntitySpawnerComponent", "{5C317DF1-7BD8-4CB2-8A4C-263740B14064}");
 
-    void RootAutonomousEntitySpawnerComponent::Reflect(AZ::ReflectContext* context)
+    void NetConnectionEntitySpawnerComponent::Reflect(AZ::ReflectContext* context)
     {
         if (AZ::SerializeContext* serializeContext = azrtti_cast<AZ::SerializeContext*>(context))
         {
-            serializeContext->Class<RootAutonomousEntitySpawnerComponent, AZ::Component>()
+            serializeContext->Class<NetConnectionEntitySpawnerComponent, AZ::Component>()
                 ->Version(1)
-                ->Field("RootAutonomousEntitySpawnable", &RootAutonomousEntitySpawnerComponent::m_rootAutonomousEntitySpawnable)
-                ->Field("SpawnTransformEntityReference", &RootAutonomousEntitySpawnerComponent::m_spawnTransformEntityReference)
+                ->Field("NetConnectionEntitySpawnable", &NetConnectionEntitySpawnerComponent::m_netConnectionEntitySpawnable)
+                ->Field("SpawnTransformEntityReference", &NetConnectionEntitySpawnerComponent::m_spawnTransformEntityReference)
                 ;
 
             if (AZ::EditContext* editContext = serializeContext->GetEditContext())
             {
-                editContext->Class<RootAutonomousEntitySpawnerComponent>("RootAutonomousEntitySpawnerComponent", "[Description of functionality provided by this component]")
+                editContext->Class<NetConnectionEntitySpawnerComponent>("NetConnectionEntitySpawnerComponent", "[Description of functionality provided by this component]")
                     ->ClassElement(AZ::Edit::ClassElements::EditorData, "")
                     ->Attribute(AZ::Edit::Attributes::Category, "ComponentCategory")
                     ->Attribute(AZ::Edit::Attributes::Icon, "Icons/Components/Component_Placeholder.svg")
                     ->Attribute(AZ::Edit::Attributes::AppearsInAddComponentMenu, AZ_CRC_CE("Level"))
                     ->DataElement(
                         AZ::Edit::UIHandlers::Default,
-                        &RootAutonomousEntitySpawnerComponent::m_rootAutonomousEntitySpawnable,
-                        "Root Autonomous Entity Spawnable Asset",
+                        &NetConnectionEntitySpawnerComponent::m_netConnectionEntitySpawnable,
+                        "Net Connection Entity Spawnable Asset",
                         "The network spawnable asset which will be created as an autonomous entity for each connection that joins. Only the first entity in the prefab will be spawned and used. Create hierarchy from it if you need multiple.")
                     ->DataElement(
                         AZ::Edit::UIHandlers::Default,
-                        &RootAutonomousEntitySpawnerComponent::m_spawnTransformEntityReference,
+                        &NetConnectionEntitySpawnerComponent::m_spawnTransformEntityReference,
                         "Spawn Transform Entity Reference",
-                        "Reference to the entity to use as a spawn transform for the root autonomous entity.")
+                        "Reference to the entity to use as a spawn transform for the net connection entity.")
                     ;
             }
         }
 
         if (AZ::BehaviorContext* behaviorContext = azrtti_cast<AZ::BehaviorContext*>(context))
         {
-            behaviorContext->Class<RootAutonomousEntitySpawnerComponent>("RootAutonomousEntitySpawner Component Group")
+            behaviorContext->Class<NetConnectionEntitySpawnerComponent>("NetConnectionEntitySpawner Component Group")
                 ->Attribute(AZ::Script::Attributes::Category, "xXGameProjectNameXx Gem Group")
                 ;
         }
     }
 
-    void RootAutonomousEntitySpawnerComponent::GetProvidedServices(AZ::ComponentDescriptor::DependencyArrayType& provided)
+    void NetConnectionEntitySpawnerComponent::GetProvidedServices(AZ::ComponentDescriptor::DependencyArrayType& provided)
     {
-        provided.push_back(AZ_CRC_CE("RootAutonomousEntitySpawnerComponentService"));
+        provided.push_back(AZ_CRC_CE("NetConnectionEntitySpawnerComponentService"));
     }
 
-    void RootAutonomousEntitySpawnerComponent::GetIncompatibleServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& incompatible)
+    void NetConnectionEntitySpawnerComponent::GetIncompatibleServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& incompatible)
     {
-        incompatible.push_back(AZ_CRC_CE("RootAutonomousEntitySpawnerComponentService"));
+        incompatible.push_back(AZ_CRC_CE("NetConnectionEntitySpawnerComponentService"));
     }
 
-    void RootAutonomousEntitySpawnerComponent::GetRequiredServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& required)
-    {
-    }
-
-    void RootAutonomousEntitySpawnerComponent::GetDependentServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& dependent)
+    void NetConnectionEntitySpawnerComponent::GetRequiredServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& required)
     {
     }
 
-    void RootAutonomousEntitySpawnerComponent::Activate()
+    void NetConnectionEntitySpawnerComponent::GetDependentServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& dependent)
+    {
+    }
+
+    void NetConnectionEntitySpawnerComponent::Activate()
     {
         AZ::Interface<IMultiplayerSpawner>::Register(this);
     }
 
-    void RootAutonomousEntitySpawnerComponent::Deactivate()
+    void NetConnectionEntitySpawnerComponent::Deactivate()
     {
         AZ::Interface<IMultiplayerSpawner>::Unregister(this);
     }
 
-    Multiplayer::NetworkEntityHandle RootAutonomousEntitySpawnerComponent::OnPlayerJoin(
+    Multiplayer::NetworkEntityHandle NetConnectionEntitySpawnerComponent::OnPlayerJoin(
         [[maybe_unused]] uint64_t userId,
         [[maybe_unused]] const Multiplayer::MultiplayerAgentDatum& agentDatum)
     {
-        const AZ::Data::Asset<AzFramework::Spawnable>& spawnableAsset = m_rootAutonomousEntitySpawnable.m_spawnableAsset;
+        const AZ::Data::Asset<AzFramework::Spawnable>& spawnableAsset = m_netConnectionEntitySpawnable.m_spawnableAsset;
 
         // Only spawn a single entity from the prefab, as this system expects only one entity.
         Multiplayer::PrefabEntityId prefabEntityId = O3deUtils::MakeSinglePrefabEntityIdFromSpawnableAsset(spawnableAsset);
@@ -123,7 +123,7 @@ namespace xXGameProjectNameXx
         return AZStd::move(entityList[0]);
     }
 
-    void RootAutonomousEntitySpawnerComponent::OnPlayerLeave(
+    void NetConnectionEntitySpawnerComponent::OnPlayerLeave(
         Multiplayer::ConstNetworkEntityHandle entityHandle,
         [[maybe_unused]] const Multiplayer::ReplicationSet& replicationSet,
         [[maybe_unused]] AzNetworking::DisconnectReason reason)
@@ -142,7 +142,7 @@ namespace xXGameProjectNameXx
         }
     }
 
-    AZ::Transform RootAutonomousEntitySpawnerComponent::GetSpawnTransformFromEntityReference() const
+    AZ::Transform NetConnectionEntitySpawnerComponent::GetSpawnTransformFromEntityReference() const
     {
         AZ_Assert(O3deUtils::IsRootSpawnableReady(), "The level should be fully loaded at this point, because we are about to sample the transform from an entity reference from the level.");
 

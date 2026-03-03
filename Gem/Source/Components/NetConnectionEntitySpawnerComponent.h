@@ -8,14 +8,15 @@
 
 namespace xXGameProjectNameXx
 {
-    //! @brief Handles spawning the root autonomous entity for new connections that join the server.
-    class RootAutonomousEntitySpawnerComponent
+    //! @brief Handles spawning the "net connection entity" for new connections that join the server. The spawned entity is the root
+    //!        entity of autonomous control for the net connection.
+    class NetConnectionEntitySpawnerComponent
         : public AZ::Component
         , protected Multiplayer::IMultiplayerSpawner
     {
     public:
 
-        AZ_COMPONENT_DECL(RootAutonomousEntitySpawnerComponent);
+        AZ_COMPONENT_DECL(NetConnectionEntitySpawnerComponent);
 
         //! Component descriptor interface.
         //! @{
@@ -45,7 +46,7 @@ namespace xXGameProjectNameXx
 
     private:
 
-        Multiplayer::NetworkSpawnable m_rootAutonomousEntitySpawnable;
+        Multiplayer::NetworkSpawnable m_netConnectionEntitySpawnable;
 
         // @Christian: TODO: [todo][techdebt][multiplayer] This component should not be determining where the characters are spawned. Move
         // this to a different component which would handle spawning actual character entity.

@@ -16,8 +16,8 @@ list(APPEND FILES
     Source/GameStates/StageSelect.h
     Source/GameStates/StageSelect.cpp
     Source/SettingsRegistryAccessors.cpp
-    Source/Components/RootAutonomousEntitySpawnerComponent.h
-    Source/Components/RootAutonomousEntitySpawnerComponent.cpp
+    Source/Components/NetConnectionEntitySpawnerComponent.h
+    Source/Components/NetConnectionEntitySpawnerComponent.cpp
     Source/Components/PlayerEntityManagerComponent.h
     Source/Components/PlayerEntityManagerComponent.cpp
     Source/PlayerSystemComponent.cpp

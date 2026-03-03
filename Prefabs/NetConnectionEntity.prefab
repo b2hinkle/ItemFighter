@@ -1,7 +1,7 @@
 {
     "ContainerEntity": {
         "Id": "ContainerEntity",
-        "Name": "RootAutonomousEntity",
+        "Name": "NetConnectionEntity",
         "Components": {
             "EditorDisabledCompositionComponent": {
                 "$type": "EditorDisabledCompositionComponent",
@@ -52,7 +52,7 @@
     "Entities": {
         "Entity_[349591896185]": {
             "Id": "Entity_[349591896185]",
-            "Name": "RootAutonomousEntity",
+            "Name": "NetConnectionEntity",
             "Components": {
                 "EditorCommentComponent": {
                     "$type": "EditorCommentComponent",

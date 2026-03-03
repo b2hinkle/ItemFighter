@@ -21,7 +21,7 @@ namespace xXGameProjectNameXx
     //!        components. I'll try to keep actual player data and player functionality decoupled from the entity.
     //!
     //!        An important purpose of this component is to to support local multiplayer / split-screen, by allowing multiple players to
-    //!        exist per network connection. E.g., I'm using this in combination with the `RootAutonomousEntitySpawnerComponent`. I have that
+    //!        exist per network connection. E.g., I'm using this in combination with the `NetConnectionEntitySpawnerComponent`. I have that
     //!        spawning a prefab with this player entity manager on it, which then spawns individual instances of "players".
     //!
     //!        For multiplayer, you probably want to make sure this entity has a `NetworkHierarchyRootComponent` on it, and make sure the player

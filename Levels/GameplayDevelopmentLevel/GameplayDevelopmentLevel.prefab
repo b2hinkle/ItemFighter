@@ -50,18 +50,18 @@
                 "Id": 7706779388774148851,
                 "LocalBookmarkFileName": "GameplayDevelopmentLevel_17540291519627688.setreg"
             },
-            "RootAutonomousEntitySpawnerComponent": {
+            "NetConnectionEntitySpawnerComponent": {
                 "$type": "GenericComponentWrapper",
                 "Id": 9865409291786708939,
                 "m_template": {
-                    "$type": "RootAutonomousEntitySpawnerComponent",
-                    "RootAutonomousEntitySpawnable": {
+                    "$type": "NetConnectionEntitySpawnerComponent",
+                    "NetConnectionEntitySpawnable": {
                         "Spawnable": {
                             "assetId": {
                                 "guid": "{689CE607-3571-5CA8-9F28-DF2C731086BD}",
                                 "subId": 3524801777
                             },
-                            "assetHint": "prefabs/rootautonomousentity.network.spawnable"
+                            "assetHint": "prefabs/netconnectionentity.network.spawnable"
                         }
                     },
                     "SpawnTransformEntityReference": "Entity_[949383976148]"

@@ -19,7 +19,7 @@ namespace xXGameProjectNameXx
         static void Reflect(AZ::ReflectContext* context);
     };
 
-    //! @brief Handles spawning the root autonomous entity for new connections that join the server.
+    //! @brief
     class EntitySpawnerComponent_OneOffAtTransforms
         : public AZ::Component
         , protected AzFramework::RootSpawnableNotificationBus::Handler
