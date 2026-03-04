@@ -12,9 +12,9 @@ namespace xXGameProjectNameXx
 {
     namespace HealthRequestFunctions
     {
-        float GetHealthValue(const AZ::EntityId& entityId);
+        inline float GetHealthValue(const AZ::EntityId& entityId);
 #if AZ_TRAIT_SERVER
-        void SetHealthValue(const AZ::EntityId& entityId, float newValue);
+        inline void SetHealthValue(const AZ::EntityId& entityId, float newValue);
 #endif
     }
 

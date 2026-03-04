@@ -15,11 +15,11 @@ namespace xXGameProjectNameXx
 
     namespace EntityControlRequestFunctions
     {
-        bool ControlEntity(const AZ::EntityId& controllerEntityId, const AZ::EntityId& entityId);
-        bool ControlEntity(const AZ::EntityId& controllerEntityId, const Multiplayer::NetEntityId& netEntityId);
+        inline bool ControlEntity(const AZ::EntityId& controllerEntityId, const AZ::EntityId& entityId);
+        inline bool ControlEntity(const AZ::EntityId& controllerEntityId, const Multiplayer::NetEntityId& netEntityId);
 
-        bool UncontrolEntity(const AZ::EntityId& controllerEntityId, const AZ::EntityId& entityId);
-        bool UncontrolEntity(const AZ::EntityId& controllerEntityId, const Multiplayer::NetEntityId& netEntityId);
+        inline bool UncontrolEntity(const AZ::EntityId& controllerEntityId, const AZ::EntityId& entityId);
+        inline bool UncontrolEntity(const AZ::EntityId& controllerEntityId, const Multiplayer::NetEntityId& netEntityId);
     }
 
     class EntityControlRequests

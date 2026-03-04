@@ -16,4 +16,5 @@ list(APPEND FILES
     Include/xXGameProjectNameXx/EntityControlInterface.h
     Include/xXGameProjectNameXx/LevelGameEntityBus.h
     Include/xXGameProjectNameXx/HealthInterface.h
+    Include/xXGameProjectNameXx/NetConnectionEntityBus.h
 )

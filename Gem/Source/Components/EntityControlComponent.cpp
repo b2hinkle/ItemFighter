@@ -120,7 +120,7 @@ namespace xXGameProjectNameXx
         }
 #else
         {
-            if (!O3deUtils::GetNetBindComponentAsserted(*this).IsNetEntityRoleAuthority())
+            if (!O3deUtils::GetNetBindComponentAsserted(GetEntityId()).IsNetEntityRoleAuthority())
             {
                 AZLOG_ERROR(noAuthorityLogString.data());
                 return false;
@@ -187,7 +187,7 @@ namespace xXGameProjectNameXx
         }
 #else
         {
-            if (!O3deUtils::GetNetBindComponentAsserted(*this).IsNetEntityRoleAuthority())
+            if (!O3deUtils::GetNetBindComponentAsserted(GetEntityId()).IsNetEntityRoleAuthority())
             {
                 AZLOG_ERROR(noAuthorityLogString.data());
                 return false;
@@ -208,7 +208,7 @@ namespace xXGameProjectNameXx
 #if AZ_TRAIT_SERVER
     bool EntityControlComponent::TryAddToControlledNetEntityIds(const Multiplayer::NetEntityId& netEntityId)
     {
-        AZ_Assert(O3deUtils::GetNetBindComponentAsserted(*this).IsNetEntityRoleAuthority(), "This logic is authority only.");
+        AZ_Assert(O3deUtils::GetNetBindComponentAsserted(GetEntityId()).IsNetEntityRoleAuthority(), "This logic is authority only.");
 
         EntityControlComponentController* multiplayerController = GetEntityControlComponentController();
         AZ_Assert(multiplayerController, "Shouldn't be null.");
@@ -239,7 +239,7 @@ namespace xXGameProjectNameXx
 
     bool EntityControlComponent::TryRemoveFromControlledNetEntityIds(const Multiplayer::NetEntityId& netEntityId)
     {
-        AZ_Assert(O3deUtils::GetNetBindComponentAsserted(*this).IsNetEntityRoleAuthority(), "This logic is authority only.");
+        AZ_Assert(O3deUtils::GetNetBindComponentAsserted(GetEntityId()).IsNetEntityRoleAuthority(), "This logic is authority only.");
 
         EntityControlComponentController* multiplayerController = GetEntityControlComponentController();
         AZ_Assert(multiplayerController, "Shouldn't be null.");
@@ -252,7 +252,7 @@ namespace xXGameProjectNameXx
 
     void EntityControlComponent::HandleAddedControlledEntity(const AZ::EntityId& entityId)
     {
-        AZ_Assert(O3deUtils::GetNetBindComponentAsserted(*this).IsNetEntityRoleAuthority(), "This logic is authority only.");
+        AZ_Assert(O3deUtils::GetNetBindComponentAsserted(GetEntityId()).IsNetEntityRoleAuthority(), "This logic is authority only.");
 
         const AZ::EntityId& owningEntityId = GetEntityId();
 
@@ -262,7 +262,7 @@ namespace xXGameProjectNameXx
 
     void EntityControlComponent::HandleRemovedControlledEntity(const AZ::EntityId& entityId)
     {
-        AZ_Assert(O3deUtils::GetNetBindComponentAsserted(*this).IsNetEntityRoleAuthority(), "This logic is authority only.");
+        AZ_Assert(O3deUtils::GetNetBindComponentAsserted(GetEntityId()).IsNetEntityRoleAuthority(), "This logic is authority only.");
 
         const AZ::EntityId& owningEntityId = GetEntityId();
 

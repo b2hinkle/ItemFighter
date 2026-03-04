@@ -106,7 +106,7 @@ namespace xXGameProjectNameXx
             // `NetBindComponent::EnablePlayerHostAutonomy`.
             if (entity.GetState() != AZ::Entity::State::Active)
             {
-                const Multiplayer::NetBindComponent& netBindComponent = O3deUtils::GetNetBindComponentAsserted(GetOwner());
+                const Multiplayer::NetBindComponent& netBindComponent = O3deUtils::GetNetBindComponentAsserted(GetOwner().GetEntityId());
                 if (netBindComponent.IsNetEntityRoleAuthority())
                 {
                     CreatePlayerEntities();
@@ -123,7 +123,7 @@ namespace xXGameProjectNameXx
 #if AZ_TRAIT_SERVER
     void PlayerEntityManagerComponentController::CreatePlayerEntities()
     {
-        AZ_Assert(O3deUtils::GetNetBindComponentAsserted(GetOwner()).IsNetEntityRoleAuthority(), "Should only be called on the authority.");
+        AZ_Assert(O3deUtils::GetNetBindComponentAsserted(GetOwner().GetEntityId()).IsNetEntityRoleAuthority(), "Should only be called on the authority.");
 
         const AZ::Data::Asset<AzFramework::Spawnable>& spawnableAsset = GetOwnerCasted().m_playerEntitySpawnable.m_spawnableAsset;
 

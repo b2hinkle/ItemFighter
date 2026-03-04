@@ -12,6 +12,7 @@ namespace xXGameProjectNameXx
     class PlayerRequests;
     class LevelGameEntitySystemComponent;
     class LevelGameEntityRequests;
+    class NetConnectionEntityRequests;
 }
 
 namespace xXGameProjectNameXx
@@ -69,5 +70,11 @@ namespace xXGameProjectNameXx
     struct TypeIdTrait<LevelGameEntityRequests>
     {
         static inline constexpr AZStd::string_view value = "{4B94AC11-5A3E-41D5-9159-125C1A90CF3E}";
+    };
+
+    template <>
+    struct TypeIdTrait<NetConnectionEntityRequests>
+    {
+        static inline constexpr AZStd::string_view value = "{7BD91359-8186-4F3B-A7E4-7DE9D18F1846}";
     };
 } // namespace xXGameProjectNameXx

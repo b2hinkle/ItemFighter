@@ -43,4 +43,4 @@ namespace xXGameProjectNameXx::SettingsRegistryAccessors
 
     XXGAMEPROJECTNAMEXX_API AZStd::optional<AZ::SettingsRegistryInterface::FixedValueString> TryGetLevelGameEntityPrefabPathname();
     XXGAMEPROJECTNAMEXX_API AZStd::optional<AZ::Data::Asset<AzFramework::Spawnable>> TryGetLevelGameEntityPrefabAsset();
-} // namespace xXGameProjectNameXx
+}

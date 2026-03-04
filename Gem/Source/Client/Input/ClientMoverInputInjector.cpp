@@ -67,7 +67,7 @@ namespace xXGameProjectNameXx
 
     void ClientMoverInputInjector::OnActivate()
     {
-        if (O3deUtils::GetNetBindComponentAsserted(m_parentComponent).IsNetEntityRoleAutonomous())
+        if (O3deUtils::GetNetBindComponentAsserted(m_parentComponent.GetEntityId()).IsNetEntityRoleAutonomous())
         {
             // @Christian: TODO: [todo][techdebt][local_multiplayer] Actually get the local user id of the player that owns
             // this component. Important for supporting local multiplayer / splitscreen.
@@ -92,7 +92,7 @@ namespace xXGameProjectNameXx
 
     void ClientMoverInputInjector::OnDeactivate()
     {
-        if (O3deUtils::GetNetBindComponentAsserted(m_parentComponent).IsNetEntityRoleAutonomous())
+        if (O3deUtils::GetNetBindComponentAsserted(m_parentComponent.GetEntityId()).IsNetEntityRoleAutonomous())
         {
             StartingPointInput::InputEventNotificationBus::MultiHandler::BusDisconnect();
 

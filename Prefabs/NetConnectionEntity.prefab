@@ -116,6 +116,13 @@
                     "$type": "EditorPendingCompositionComponent",
                     "Id": 7012991947349377408
                 },
+                "EditorTagComponent": {
+                    "$type": "EditorTagComponent",
+                    "Id": 5078496194388392413,
+                    "Tags": [
+                        "xXGameProjectNameXx.NetConnectionEntity"
+                    ]
+                },
                 "EditorVisibilityComponent": {
                     "$type": "EditorVisibilityComponent",
                     "Id": 3115874142374991608

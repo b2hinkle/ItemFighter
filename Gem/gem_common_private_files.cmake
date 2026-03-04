@@ -30,4 +30,5 @@ list(APPEND FILES
     Source/LevelGameEntitySystemComponent.cpp
     Source/Components/HealthComponent.h
     Source/Components/HealthComponent.cpp
+    Source/NetConnectionEntityBus.cpp
 )

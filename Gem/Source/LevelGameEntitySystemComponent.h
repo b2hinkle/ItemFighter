@@ -14,7 +14,7 @@
 
 namespace xXGameProjectNameXx
 {
-    static bool IsLevelGameEntity(const AZ::EntityId& entityId);
+    bool IsLevelGameEntity(const AZ::EntityId& entityId);
 
     // @Christian: TODO: [todo][techdebt][tag] Use a proper "gameplay tag" system instead of LmbrCentral's tag component.
     constexpr LmbrCentral::Tag LevelGameEntityTag = AZ_CRC_CE("xXGameProjectNameXx.LevelGameEntity");

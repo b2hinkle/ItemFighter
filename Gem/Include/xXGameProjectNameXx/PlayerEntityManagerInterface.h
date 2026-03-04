@@ -19,11 +19,11 @@ namespace xXGameProjectNameXx
 
     namespace PlayerEntityManagerRequestFunctions
     {
-        int GetNumPlayersToCreate(const AZ::EntityId& playerEntityManagerEntityId);
-        const Multiplayer::NetworkSpawnable& GetPlayerEntitySpawnable(const AZ::EntityId& playerEntityManagerEntityId);
+        inline int GetNumPlayersToCreate(const AZ::EntityId& playerEntityManagerEntityId);
+        inline const Multiplayer::NetworkSpawnable& GetPlayerEntitySpawnable(const AZ::EntityId& playerEntityManagerEntityId);
 
-        void SetNumPlayersToCreate(const AZ::EntityId& playerEntityManagerEntityId, int newValue);
-        void SetPlayerEntitySpawnable(const AZ::EntityId& playerEntityManagerEntityId, Multiplayer::NetworkSpawnable&& newValue);
+        inline void SetNumPlayersToCreate(const AZ::EntityId& playerEntityManagerEntityId, int newValue);
+        inline void SetPlayerEntitySpawnable(const AZ::EntityId& playerEntityManagerEntityId, Multiplayer::NetworkSpawnable&& newValue);
     }
 
     class PlayerEntityManagerRequests

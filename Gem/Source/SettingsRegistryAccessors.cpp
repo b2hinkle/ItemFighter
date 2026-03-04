@@ -129,4 +129,4 @@ namespace xXGameProjectNameXx::SettingsRegistryAccessors
             AZStd::string{*path}
         };
     }
-} // namespace xXGameProjectNameXx::Canvases
+}
