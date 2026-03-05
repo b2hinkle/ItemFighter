@@ -11,7 +11,7 @@
 #include <AzCore/Console/ILogger.h>
 #include <AzCore/Debug/Trace.h>
 #include <O3deUtils/Misc/MultiplayerUtils.h>
-#include <AzCore/std/algorithm.h>
+#include <CppUtils/Core/Algorithm.h>
 
 namespace
 {
@@ -42,12 +42,12 @@ namespace xXGameProjectNameXx
 
         // Add them, if not already.
 
-        if (AZStd::find(required.begin(), required.end(), netBindService) == required.end())
+        if (!CppUtils::contains(required, netBindService))
         {
             required.push_back(netBindService);
         }
 
-        if (AZStd::find(required.begin(), required.end(), moverNetworkInputComponentService) == required.end())
+        if (!CppUtils::contains(required, moverNetworkInputComponentService))
         {
             required.push_back(moverNetworkInputComponentService);
         }
@@ -59,7 +59,7 @@ namespace xXGameProjectNameXx
 
         // Add them, if not already.
 
-        if (AZStd::find(dependent.begin(), dependent.end(), netBindService) == dependent.end())
+        if (!CppUtils::contains(dependent, netBindService))
         {
             dependent.push_back(netBindService);
         }

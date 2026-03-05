@@ -13,7 +13,7 @@
 #include <Multiplayer/Components/NetBindComponent.h>
 #include <AzCore/Component/TransformBus.h>
 #include <AzCore/Component/Entity.h>
-#include <AzCore/std/algorithm.h>
+#include <CppUtils/Core/Algorithm.h>
 #include <O3deUtils/Core/AzCoreUtils.h>
 
 namespace xXGameProjectNameXx
@@ -215,8 +215,7 @@ namespace xXGameProjectNameXx
 
         {
             const ControlledNetEntityIdsVector& controlledNetEntityIds = multiplayerController->GetControlledNetEntityIds();
-            const bool hasAlready = AZStd::find(controlledNetEntityIds.begin(), controlledNetEntityIds.end(), netEntityId) != controlledNetEntityIds.end();
-            if (hasAlready)
+            if (CppUtils::contains(controlledNetEntityIds, netEntityId))
             {
                 {
                     AZStd::fixed_string<256> logString;
