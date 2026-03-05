@@ -16,6 +16,7 @@
     "engine": "o3de",
     "external_subdirectories": [
         "Dependencies/Gems/CppUtilsO3deGem",
+        "Dependencies/Gems/O3deFramework_Misc",
         "Dependencies/Gems/O3deUtils_Core",
         "Dependencies/Gems/O3deUtils_Misc",
         "Gem"
@@ -28,6 +29,7 @@
         "ImGui",
         "LyShine",
         "Multiplayer",
+        "O3deFramework_Misc",
         "O3deUtils_Core",
         "O3deUtils_Misc",
         "PhysX",
