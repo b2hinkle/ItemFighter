@@ -120,7 +120,7 @@
                     "$type": "EditorTagComponent",
                     "Id": 5078496194388392413,
                     "Tags": [
-                        "xXGameProjectNameXx.NetConnectionEntity"
+                        "O3deFramework.Misc.NetConnectionEntity"
                     ]
                 },
                 "EditorVisibilityComponent": {

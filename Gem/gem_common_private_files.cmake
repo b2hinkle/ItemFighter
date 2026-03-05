@@ -16,8 +16,6 @@ list(APPEND FILES
     Source/GameStates/StageSelect.h
     Source/GameStates/StageSelect.cpp
     Source/SettingsRegistryAccessors.cpp
-    Source/Components/NetConnectionEntitySpawnerComponent.h
-    Source/Components/NetConnectionEntitySpawnerComponent.cpp
     Source/Components/PlayerEntityManagerComponent.h
     Source/Components/PlayerEntityManagerComponent.cpp
     Source/PlayerSystemComponent.cpp
@@ -30,5 +28,4 @@ list(APPEND FILES
     Source/LevelGameEntitySystemComponent.cpp
     Source/Components/HealthComponent.h
     Source/Components/HealthComponent.cpp
-    Source/NetConnectionEntityBus.cpp
 )
