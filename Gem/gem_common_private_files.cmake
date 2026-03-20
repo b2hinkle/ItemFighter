@@ -18,8 +18,6 @@ list(APPEND FILES
     Source/SettingsRegistryAccessors.cpp
     Source/PlayerSystemComponent.cpp
     Source/PlayerSystemComponent.h
-    Source/Components/EntitySpawnerComponent_OneOffAtTransforms.h
-    Source/Components/EntitySpawnerComponent_OneOffAtTransforms.cpp
     Source/Components/HealthComponent.h
     Source/Components/HealthComponent.cpp
 )

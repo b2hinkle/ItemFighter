@@ -10,7 +10,6 @@
 #include <Source/AutoGen/StageSelectGameStateLevelComponent.GameStateLevelComponent.h>
 #include <Source/Components/MoverComponent.h>
 #include <Source/PlayerSystemComponent.h>
-#include <Source/Components/EntitySpawnerComponent_OneOffAtTransforms.h>
 
 namespace xXGameProjectNameXx
 {
@@ -29,7 +28,6 @@ namespace xXGameProjectNameXx
                 StageSelectGameStateLevelComponent::CreateDescriptor(),
                 MoverComponent::CreateDescriptor(),
                 PlayerSystemComponent::CreateDescriptor(),
-                EntitySpawnerComponent_OneOffAtTransforms::CreateDescriptor(),
                 }
             );
 
